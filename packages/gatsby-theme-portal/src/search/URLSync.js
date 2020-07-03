@@ -38,8 +38,6 @@ const searchStateToURL = searchState => {
     `${protocol}//${hostname}${portWithPrefix}${pathname}search-results` ||
     `${protocol}//${hostname}${portWithPrefix}${pathname}products-showcase`;
 
-  console.log('baseUrl', baseUrl);
-
   const queryParameters = {};
 
   if (routeState.query && routeState.query !== routeStateDefaultValues.query) {
@@ -181,7 +179,6 @@ const withURLSync = Search =>
 
     render() {
       const { searchState } = this.state;
-      console.log('searchState', searchState);
 
       return (
         <Search

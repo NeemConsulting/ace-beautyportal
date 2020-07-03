@@ -11,11 +11,11 @@ import ImageBlock from '../../components/ImageBlock';
 import Container from '@material-ui/core/Container';
 
 const searchIndices = [
-  { name: `products`, title: `products`, hitComp: `PostHit` },
+  { name: `howtoArticle`, title: `howtoArticle`, hitComp: `PostHit` },
 ];
 
 const ProductShowcase = (props: ProductShowcaseProps) => {
-  console.log('props', props);
+  console.log('ProductShowcase', ProductShowcase);
   const howtoShampooArticles = props.data.howtoShampooArticles.nodes;
   const galleryShampooArticles = props.data.galleryShampooArticles.nodes;
   const featureShampooArticles = props.data.featureShampooArticles.nodes;
@@ -25,7 +25,6 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
     ...featureShampooArticles,
   ];
   const seeAllShampoo = props.data.seeAllShampoo.nodes[0].name;
-  console.log('seeAllShampoo', seeAllShampoo);
   const howtoHairSprayArticles = props.data.howtoHairSprayArticles.nodes;
   const galleryHairSprayArticles = props.data.galleryHairSprayArticles.nodes;
   const featureHairSprayArticles = props.data.featureHairSprayArticles.nodes;
@@ -35,7 +34,6 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
     ...featureHairSprayArticles,
   ];
   const seeAllHairSpray = props.data.seeAllHairSpray.nodes[0].name;
-  console.log('seeAllHairSpray', seeAllHairSpray);
   const imgBlock = props.data.imageBlock.edges.map(edge => edge.node);
   const introBlockName = props.data.productShowcaseIntro.name;
   const introBlockType = props.data.productShowcaseIntro.textBlockType;
@@ -49,6 +47,7 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
       tags: { nodes: tagsList },
     },
   } = props;
+  console.log('introBlockName', props.data.productShowcaseIntro);
   return (
     <Layout>
       <SEO lang={'tl-ph'} title="" description="" keywords="" />
@@ -70,7 +69,9 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
         _rawTextBlockBody={imgBlock[0]._rawTextBlockBody}
         url={imgBlock[0].url}
         imageBlockType={imgBlock[0].imageBlockType}
+        preferPerformance={false}
       />
+
       <Grid item xs={12}>
         <section>
           <SanityArticleSlider
@@ -78,11 +79,13 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
             slides={allHairSprayArticles}
             headline="Hair Spray Hacks"
             slideType={{ name: 'tile' }}
-            tagName={seeAllHairSpray}
+            searchTags={seeAllHairSpray}
+            searchCtaLabel=""
           />
         </section>
       </Grid>
       <SanityTextBlock
+        name=""
         _rawTextBlockBody={secondBody}
         textBlockType={secondBlockType}
       />
@@ -93,16 +96,20 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
             slides={allShampooArticles}
             headline="Our Top Shampoo Tips"
             slideType={{ name: 'tile' }}
-            tagName={seeAllShampoo}
+            searchTags={seeAllShampoo}
+            searchCtaLabel=""
           />
         </section>
       </Grid>
       <SanityTextBlock
+        name=""
         _rawTextBlockBody={thirdBody}
         textBlockType={thirdBlockType}
       />
       <Grid container xs={12} spacing={2}>
-        <Container>{tagsList && <Tags data={tagsList} />}</Container>
+        <Container>
+          {tagsList && <Tags title="Find something" data={tagsList} />}
+        </Container>
       </Grid>
     </Layout>
   );

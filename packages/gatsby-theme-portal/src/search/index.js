@@ -78,6 +78,7 @@ const Hit = ({ hit }) => (
 );
 
 const Search = props => {
+  console.log('child', props.children);
   const containerRef = useRef(null);
   const headerRef = useRef(null);
 
@@ -122,10 +123,6 @@ const Search = props => {
       onSearchStateChange={props.onSearchStateChange}
     >
       <header className="header" ref={headerRef}>
-        {/* <p className="header-logo">
-          <AlgoliaSvg />
-        </p> */}
-
         <p className="header-title">Stop looking for an item — find it.</p>
 
         <SearchBox
@@ -205,6 +202,9 @@ const Search = props => {
                 </>
               ) : (
                 <>
+                  <Panel header="Hair & Product Types">
+                    <RefinementList attribute="tag" />
+                  </Panel>
                   <Panel header="Tags">
                     <RefinementList attribute="pageType" />
                   </Panel>
@@ -233,7 +233,7 @@ const Search = props => {
               className="container-option"
               defaultRefinement="howtoArticle"
               items={[
-                { value: 'howtoArticle', label: 'Published Date Dsc' },
+                { value: 'platformLiberty', label: 'Published Date Dsc' },
                 {
                   value: 'howtoArticle',
                   label: 'Published Date Asc',

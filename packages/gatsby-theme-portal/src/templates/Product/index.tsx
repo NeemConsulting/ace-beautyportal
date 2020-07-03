@@ -1,14 +1,18 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { makeStyles } from '@material-ui/core/styles';
 import OGTags from '../../components/OGTags';
 import Breadcrumb from '../../components/Breadcrumb';
 import TileSlider from '../../components/TileSlider';
+import ImageBlock from '../../components/ImageBlock';
+import SocialMenu from '../../components/SocialMenu';
+import Button from '../../components/Common/Button';
+import BlockContent from '@sanity/block-content-to-react';
+import { blockTypeDefaultSerializers } from '../../helpers/sanity';
 import Tags from '../../components/Tags';
 import SanityArticleSlider from '../../components/SanityArticleSlider';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import SEO from '../../components/Seo';
 import Layout from '../../components/Layout';
@@ -26,49 +30,6 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'left',
     color: theme.palette.text.secondary,
   },
-  callToAction: {
-    fontSize: '.875rem',
-    fontWeight: 700,
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-    paddingTop: theme.spacing(1.25),
-    paddingBottom: theme.spacing(1.25),
-    paddingLeft: theme.spacing(1),
-    paddingRight: theme.spacing(1),
-    display: 'inline-block',
-    textDecoration: 'none',
-    position: 'relative',
-    transition: 'all .3s ease-out',
-    transform: 'perspective(1px) translateZ(0)',
-    '&:before': {
-      content: '""',
-      position: 'absolute',
-      zIndex: -1,
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      background: theme.palette.common.black,
-      transform: 'scaleX(0)',
-      transformOrigin: '0 50%',
-      transitionProperty: 'transform',
-      transitionDuration: '0.3s',
-      transitionTimingFunction: 'ease-out',
-    },
-    '&:hover': {
-      color: theme.palette.common.white,
-      '&:before': {
-        transform: 'scaleX(1)',
-      },
-    },
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.125rem',
-      paddingTop: theme.spacing(1.75),
-      paddingBottom: theme.spacing(1.75),
-      paddingLeft: theme.spacing(2.5),
-      paddingRight: theme.spacing(2.5),
-    },
-  },
   carouselArrow: {
     position: 'absolute',
     zIndex: 2,
@@ -79,6 +40,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'transparent',
     border: 'none',
   },
+  socialWrapper: {
+    '& svg': {
+      fill: 'black',
+    },
+  },
 }));
 
 const ProductPage = (props: ProductPageProps) => {
@@ -87,11 +53,13 @@ const ProductPage = (props: ProductPageProps) => {
       page,
       products: { nodes: productNodes },
       articles: { nodes: articlesList },
-      tags: { nodes: tagsList },
+      brandInfo,
+      imageBlock,
     },
   } = props;
 
   const classes = useStyles();
+
   page.seo = page.seo || {};
 
   return (
@@ -104,45 +72,79 @@ const ProductPage = (props: ProductPageProps) => {
       />
       <OGTags type={'page'} slug={page.path} data={page} />
       {page.path !== '/' && <Breadcrumb pageTitle={page.name} />}
-      <Grid container spacing={2}>
-        <Grid item xs={5}>
+      <Grid container>
+        <Grid item xs={12}>
           <Container>
-            <section>
-              <Img fluid={page.image.asset.fluid} alt={page.image.alt} />
-            </section>
+            <Grid container>
+              <Grid item lg={5} md={5} xs={12}>
+                <Img fluid={page.image.asset.fluid} alt={page.image.alt} />
+              </Grid>
+              <Grid item lg={7} md={7} xs={12}>
+                <h1>{page.name}</h1>
+                <Button lable="Buy Now" link={page.buyNow} />
+                <Grid container spacing={2}>
+                  <Grid
+                    item
+                    lg={6}
+                    md={6}
+                    xs={12}
+                    className={classes.socialWrapper}
+                  >
+                    <BlockContent
+                      blocks={page._rawMarketingDescription}
+                      serializers={blockTypeDefaultSerializers}
+                    />
+                    <SocialMenu links={brandInfo} />
+                  </Grid>
+                  <Grid item lg={6} md={6} xs={12}>
+                    <BlockContent
+                      blocks={page._rawUsageDetails}
+                      serializers={blockTypeDefaultSerializers}
+                    />
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
           </Container>
         </Grid>
-        <Grid item xs={7}>
+        <Grid item xs={12} className={classes.mainGrid}>
           <Container>
-            <h1>{page.name}</h1>
-            <Link className={classes.callToAction} to={page.learnMore}>
-              See the benefits
-            </Link>
-            {/* <p>{page._rawMarketingDescription[0].children[0].text}</p>
-            <p>{page._rawMarketingDescription[1].children[0].text}</p> */}
+            {productNodes.length > 0 && (
+              <TileSlider
+                name="Products"
+                slides={productNodes}
+                headline="Products You Might Also Like"
+                seeAllLink="product-showcase"
+              />
+            )}
           </Container>
         </Grid>
         <Grid item xs={12}>
-          <Container>
-            <TileSlider
-              name="Products"
-              slides={productNodes}
-              headline="Product you may like"
-            />
-          </Container>
+          <ImageBlock
+            id={imageBlock._id}
+            name={imageBlock.name}
+            image={imageBlock.image}
+            _rawTextBlockBody={imageBlock._rawTextBlockBody}
+            url={imageBlock.url}
+            imageBlockType={imageBlock.imageBlockType}
+          />
         </Grid>
         <Grid item xs={12}>
-          <section>
+          {articlesList.length > 0 && (
             <SanityArticleSlider
               name="articles"
               slides={articlesList}
               headline="Our Tips & Advice"
               slideType={{ name: 'tile' }}
             />
-          </section>
+          )}
         </Grid>
         <Grid item xs={12}>
-          <Container>{tagsList && <Tags data={tagsList} />}</Container>
+          <Container>
+            {page.tags.length && (
+              <Tags title="Find something else" data={page.tags} />
+            )}
+          </Container>
         </Grid>
       </Grid>
     </Layout>
@@ -152,16 +154,35 @@ const ProductPage = (props: ProductPageProps) => {
 export default ProductPage;
 
 export const query = graphql`
-  query($slug: String!) {
-    products: allSanityProduct {
+  query($slug: String!, $tags: [String!]) {
+    products: allSanityProduct(
+      filter: {
+        tags: { elemMatch: { name: { in: $tags } } }
+        id: { nin: [$slug] }
+      }
+    ) {
       nodes {
         ...ProductFieldsTile
       }
     }
+
     page: sanityProduct(id: { eq: $slug }) {
       ...ProductFieldsFull
+      tags {
+        name
+        tagCategory {
+          name
+        }
+      }
     }
-    articles: allSanityHowToArticle {
+    articles: allSanityHowToArticle(
+      filter: {
+        tags: { elemMatch: { name: { in: $tags } } }
+        id: { nin: [$slug] }
+      }
+      limit: 10
+      sort: { fields: _createdAt, order: DESC }
+    ) {
       nodes {
         ...HowToFieldsTile
       }
@@ -176,6 +197,36 @@ export const query = graphql`
         name
       }
     }
+    imageBlock: sanityImageBlock {
+      id
+      name
+      image {
+        asset {
+          fluid {
+            base64
+            aspectRatio
+            src
+            srcSet
+            srcWebp
+            srcSetWebp
+            sizes
+          }
+        }
+      }
+      _rawTextBlockBody
+      url
+      imageBlockType {
+        id
+        name
+      }
+    }
+    brandInfo: sanityBrandInfo {
+      pinteresturl
+      twitterurl
+      youtubeurl
+      facebookurl
+      instaurl
+    }
   }
 `;
 
@@ -184,7 +235,8 @@ interface ProductPageProps {
     page: any;
     products: any;
     articles: any;
-    tags: any;
+    brandInfo: any;
+    imageBlock: any;
   };
   pageContext: {
     slug: string;

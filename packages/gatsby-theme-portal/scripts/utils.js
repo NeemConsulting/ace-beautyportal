@@ -858,8 +858,6 @@ const getPagePath = node => {
     pathSections.push(node.parentPage.slug.current);
   node.slug && node.slug.current && pathSections.push(node.slug.current);
 
-  console.log('pathSections', pathSections);
-
   return `/${pathSections.join('/')}/`.replace(/(\/)\/+/g, '$1');
 };
 

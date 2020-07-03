@@ -2,26 +2,22 @@ import React, { FunctionComponent, useState } from 'react';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import classNames from 'classnames';
-import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
 import Swiper from 'react-id-swiper';
-import 'swiper/css/swiper.css';
-import { getSearchUrl } from '../../helpers/searchUrl';
+import 'swiper/css/swiper.min.css';
+
 import { ArticleTileSliderInterface } from './models';
 import { ReactComponent as PlayVideo } from '../../images/icons/play.svg';
 import { ReactComponent as Next } from '../../images/icons/next.svg';
-import Styles from './styles';
-
-const useStyles = makeStyles(Styles);
+import { getSearchUrlWithTagsAndCategory } from '../../helpers/searchUrl';
+import useStyles from './styles';
 
 const ArticleTileSlider: FunctionComponent<ArticleTileSliderInterface> = ({
-  name,
   slides,
   headline,
-  tagName,
-  searchResultPath,
+  searchCtaLabel,
+  searchTags,
 }) => {
-  console.log('tagName', tagName);
   const [swiper, updateSwiper] = useState(null);
   const [isLastSlide, setIsLastSlide] = useState(false);
   const [isFirstSlide, setIsFirstSlide] = useState(true);
@@ -46,7 +42,6 @@ const ArticleTileSlider: FunctionComponent<ArticleTileSliderInterface> = ({
   };
 
   const renderer = slide => {
-    console.log('articleSlide', slide);
     return (
       <div key={slide.headline}>
         <div>
@@ -105,12 +100,14 @@ const ArticleTileSlider: FunctionComponent<ArticleTileSliderInterface> = ({
         <Typography variant="h2" className={classes.sliderTitle}>
           {headline}
         </Typography>
-        <Link
-          className={classes.sectionLink}
-          to={getSearchUrl(searchResultPath, tagName, 'tags.name')}
-        >
-          See All
-        </Link>
+        {searchCtaLabel && (
+          <Link
+            className={classes.sectionLink}
+            to={getSearchUrlWithTagsAndCategory(searchTags)}
+          >
+            {searchCtaLabel}
+          </Link>
+        )}
       </div>
       {slides.length > 3 && (
         <button

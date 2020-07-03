@@ -1,5 +1,4 @@
 import React, { FunctionComponent } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 
 import { ReactComponent as Instagram } from '../../images/icons/instagram.svg';
 import { ReactComponent as Twitter } from '../../images/icons/twitter.svg';
@@ -8,8 +7,7 @@ import { ReactComponent as Youtube } from '../../images/icons/youtube.svg';
 import { ReactComponent as Facebook } from '../../images/icons/facebook.svg';
 import { ReactComponent as Share } from '../../images/icons/facebook.svg';
 
-import Styles from './styles';
-const useStyles = makeStyles(Styles);
+import useStyles from './styles';
 
 const SocialMenu: FunctionComponent<SocialMenuInterface> = ({ links }) => {
   const classes = useStyles();
@@ -21,7 +19,6 @@ const SocialMenu: FunctionComponent<SocialMenuInterface> = ({ links }) => {
     youtube: Youtube,
     default: Share,
   };
-
   const renderItems = () => {
     return Object.entries(links).map(([key, value]) => {
       const Component = socialIcons[key.split('url')[0]] || socialIcons.default;
