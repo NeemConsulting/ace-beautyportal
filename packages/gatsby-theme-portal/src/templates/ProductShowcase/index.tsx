@@ -10,9 +10,7 @@ import SanityArticleSlider from '../../components/SanityArticleSlider';
 import ImageBlock from '../../components/ImageBlock';
 import Container from '@material-ui/core/Container';
 
-const searchIndices = [
-  { name: `howtoArticle`, title: `howtoArticle`, hitComp: `PostHit` },
-];
+const searchIndices = [{ name: `products`, title: `products`, hitComp: `Hit` }];
 
 const ProductShowcase = (props: ProductShowcaseProps) => {
   console.log('ProductShowcase', ProductShowcase);

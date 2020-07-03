@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, createRef } from 'react';
 import { Link } from 'gatsby';
 import {
   InstantSearch,
   RefinementList,
+  Index,
   SortBy,
   Pagination,
   ClearRefinements,
@@ -28,13 +29,13 @@ import './search.mobile.css';
 import './widgets/Pagination.css';
 
 const searchClient = algoliasearch(
-  process.env['app_local_algolia_app_id'] || 'TUS0YOBD3F',
+  process.env['app_local_algolia_app_id'] || 'XBFIS787BV',
   process.env['app_local_algolia_search_api_key'] ||
-    'fe16863454663937e5c39de4de666362'
+    '7d73d09b89c03c358d0f1a3ac49fd828'
 );
 
 const Hit = ({ hit }) => (
-  <Link className={'ais-InfiniteHits-item__link'} to={`/${hit.path}`}>
+  <Link className={'ais-InfiniteHits-item__link'} to={`/${hit.slug.current}/`}>
     <article className="hit">
       <header className="hit-image-container">
         {/* <img
@@ -63,7 +64,7 @@ const Hit = ({ hit }) => (
       <div className="hit-info-container">
         <p className="hit-category"></p>
         <h1>
-          <Highlight attribute="Title" tagName="mark" hit={hit} />
+          <Highlight attribute="title" tagName="mark" hit={hit} />
         </h1>
         <p className="hit-description">
           <Snippet attribute="ingredientBody" hit={hit} tagName="mark" />
@@ -78,9 +79,10 @@ const Hit = ({ hit }) => (
 );
 
 const Search = props => {
-  console.log('child', props.children);
+  console.log('propsSearch', props);
   const containerRef = useRef(null);
   const headerRef = useRef(null);
+  const ref = createRef();
 
   function openFilters() {
     document.body.classList.add('filtering');
@@ -117,10 +119,11 @@ const Search = props => {
   return (
     <InstantSearch
       searchClient={searchClient}
-      indexName="howtoArticle"
+      indexName={props.indices[0].name}
       searchState={props.searchState}
       createURL={props.createURL}
       onSearchStateChange={props.onSearchStateChange}
+      root={{ props: { ref } }}
     >
       <header className="header" ref={headerRef}>
         <p className="header-title">Stop looking for an item — find it.</p>
@@ -197,14 +200,11 @@ const Search = props => {
               {props.filterProducts === 'true' ? (
                 <>
                   <Panel header="Hair & Product Types">
-                    <RefinementList attribute="tag" />
+                    <RefinementList attribute="pageType" />
                   </Panel>
                 </>
               ) : (
                 <>
-                  <Panel header="Hair & Product Types">
-                    <RefinementList attribute="tag" />
-                  </Panel>
                   <Panel header="Tags">
                     <RefinementList attribute="pageType" />
                   </Panel>
@@ -261,7 +261,16 @@ const Search = props => {
             />
           </header>
 
-          <Hits hitComponent={Hit} />
+          {props.filterProducts === 'true' ? (
+            <Index indexName="products">
+              <Hits hitComponent={Hit} />
+            </Index>
+          ) : (
+            <Index indexName="howtoArticle">
+              <Hits hitComponent={Hit} />
+            </Index>
+          )}
+
           <NoResults />
 
           <footer className="container-footer">

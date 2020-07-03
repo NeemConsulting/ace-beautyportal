@@ -3,8 +3,6 @@ import { graphql } from 'gatsby';
 import ProductShowcase from '../templates/ProductShowcase';
 
 const ProductShowcasePage = ({ data }) => {
-  console.log('productShowCaseData', data);
-  // return <ProductShowcase data={data} />;
   return (
     <div>
       <h1>Product Showcase</h1>

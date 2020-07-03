@@ -91,7 +91,6 @@ module.exports = ({ themeConfig }) => {
       options: {
         appId: siteMetadata.algoliaAppID,
         apiKey: siteMetadata.algoliaAdminApiKey,
-        indexName: 'howtoArticle',
         queries,
         enablePartialUpdates: true,
         chunkSize: 1000,

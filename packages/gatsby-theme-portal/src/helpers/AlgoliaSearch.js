@@ -220,5 +220,13 @@ const queries = [
     settings,
     matchFields: ['slug', 'modified'],
   },
+  {
+    query: productQuery,
+    transformer: ({ data }) =>
+      data.allSanityProduct.edges.map(({ node }) => handleProductRawBody(node)),
+    indexName: 'products',
+    settings,
+    matchFields: ['slug', 'modified'],
+  },
 ];
 module.exports = queries;
