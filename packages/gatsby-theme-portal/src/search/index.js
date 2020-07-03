@@ -206,10 +206,14 @@ const Search = props => {
               ) : (
                 <>
                   <Panel header="Tag">
-                    <RefinementList attribute="tag" />
+                    <RefinementList attribute="tag" limit={6} showMore={true} />
                   </Panel>
                   <Panel header="Category">
-                    <RefinementList attribute="category" />
+                    <RefinementList
+                      attribute="category"
+                      limit={6}
+                      showMore={true}
+                    />
                   </Panel>
                   <Panel header="Tags">
                     <RefinementList attribute="pageType" />
