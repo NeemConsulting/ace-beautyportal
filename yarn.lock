@@ -19715,6 +19715,13 @@ react-click-outside@^3.0.0:
   dependencies:
     hoist-non-react-statics "^2.1.1"
 
+react-compare-slider@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-compare-slider/-/react-compare-slider-1.0.4.tgz#8f14e25b5b66c2c4fad3c8c189ce3b761171ffe1"
+  integrity sha512-ELEmeGeLnJf6FbBsaUO2NvcNQ17mR5S1aLH2eDkWPxc05i/5x1HHW1D++bgvmMogYlJtGfzWrTavPS0ZW3tyEw==
+  dependencies:
+    resize-observer "^1.0.0"
+
 react-container-query@^0.11.0:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/react-container-query/-/react-container-query-0.11.2.tgz#d12f7c8cdd356058635a77197c7c6a39cbabfbd9"
@@ -20926,7 +20933,7 @@ resize-observer-polyfill@^1.5.0, resize-observer-polyfill@^1.5.1:
   resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
   integrity sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==
 
-resize-observer@1.0.0:
+resize-observer@1.0.0, resize-observer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/resize-observer/-/resize-observer-1.0.0.tgz#4f8380b73b411af4ed7d916fe85a2d59900e71ef"
   integrity sha512-D7UFShDm2TgrEDEyeg+/tTEbvOgPWlvPAfJtxiKp+qutu6HowmcGJKjECgGru0PPDIj3SAucn3ZPpOx54fF7DQ==

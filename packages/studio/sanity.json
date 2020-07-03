@@ -53,7 +53,7 @@
     },
     {
       "implements": "part:@sanity/production-preview/resolve-production-url",
-          "path": "./resolveProductionUrl.js" 
-        }
+      "path": "./resolveProductionUrl.js"
+    }
   ]
 }
