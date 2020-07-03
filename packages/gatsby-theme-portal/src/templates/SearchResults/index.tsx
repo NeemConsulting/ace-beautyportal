@@ -131,7 +131,7 @@ const SearchResults: FunctionComponent = () => {
                 <div className="filter">
                   <Panel header="Tags">
                     <RefinementList
-                      attribute="tags.name"
+                      attribute="tag"
                       limit={4}
                       showMoreLimit={50}
                       showMore={true}
@@ -142,7 +142,7 @@ const SearchResults: FunctionComponent = () => {
                   <div>
                     <Panel header="Category">
                       <RefinementList
-                        attribute="tags.tagCategory.name"
+                        attribute="category"
                         limit={4}
                         showMoreLimit={50}
                         showMore={true}
