@@ -9,6 +9,7 @@ const routeStateDefaultValues = {
   pageTypes: undefined,
   duration: undefined,
   tag: undefined,
+  brand: undefined,
   sortBy: 'howtoArticle',
   hitsPerPage: '9',
 };
@@ -21,6 +22,7 @@ const searchStateToURL = searchState => {
       searchState.refinementList && searchState.refinementList.pageType,
     duration: searchState.refinementList && searchState.refinementList.duration,
     tag: searchState.refinementList && searchState.refinementList.tag,
+    brand: searchState.refinementList && searchState.refinementList.brand,
     sortBy: searchState.sortBy,
     hitsPerPage:
       (searchState.hitsPerPage && String(searchState.hitsPerPage)) || undefined,
@@ -61,6 +63,9 @@ const searchStateToURL = searchState => {
   if (routeState.tag && routeState.tag !== routeStateDefaultValues.tag) {
     queryParameters.tag = routeState.tag.map(encodeURIComponent);
   }
+  if (routeState.brand && routeState.brand !== routeStateDefaultValues.brand) {
+    queryParameters.brand = routeState.brand.map(encodeURIComponent);
+  }
   if (
     routeState.sortBy &&
     routeState.sortBy !== routeStateDefaultValues.sortBy
@@ -92,6 +97,7 @@ const urlToSearchState = location => {
     pageTypes = [],
     duration = [],
     tag = [],
+    brand = [],
     hitsPerPage,
     sortBy,
   } = queryParameters;
@@ -103,6 +109,7 @@ const urlToSearchState = location => {
     ? duration
     : [duration].filter(Boolean);
   const allTags = Array.isArray(tag) ? tag : [tag].filter(Boolean);
+  const allBrands = Array.isArray(brand) ? brand : [brand].filter(Boolean);
 
   const searchState = { range: {} };
 
@@ -125,6 +132,11 @@ const urlToSearchState = location => {
   if (allTags.length) {
     searchState.refinementList = {
       tag: allTags.map(decodeURIComponent),
+    };
+  }
+  if (allBrands.length) {
+    searchState.refinementList = {
+      brand: allBrands.map(decodeURIComponent),
     };
   }
   if (sortBy) {

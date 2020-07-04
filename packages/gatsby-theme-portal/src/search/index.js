@@ -1,4 +1,4 @@
-import React, { useRef, createRef } from 'react';
+import React, { useState, useRef, createRef } from 'react';
 import { Link } from 'gatsby';
 import {
   InstantSearch,
@@ -12,10 +12,10 @@ import {
   HitsPerPage,
   Panel,
   Configure,
-  SearchBox,
   Snippet,
 } from 'react-instantsearch-dom';
 import algoliasearch from 'algoliasearch/lite';
+import Autocomplete from './autocomplete';
 import {
   ClearFiltersMobile,
   NoResults,
@@ -81,8 +81,16 @@ const Hit = ({ hit }) => (
 const Search = props => {
   console.log('propsSearch', props);
   const containerRef = useRef(null);
+  const [query, setQuery] = useState('');
   const headerRef = useRef(null);
   const ref = createRef();
+  const onSuggestionSelected = (_, { suggestion }) => {
+    setQuery(suggestion.name);
+  };
+
+  const onSuggestionCleared = () => {
+    setQuery('');
+  };
 
   function openFilters() {
     document.body.classList.add('filtering');
@@ -126,34 +134,19 @@ const Search = props => {
       root={{ props: { ref } }}
     >
       <header className="header" ref={headerRef}>
-        <p className="header-title">Stop looking for an item — find it.</p>
-
-        <SearchBox
-          translations={{
-            placeholder: 'Product, brand, color, …',
-          }}
-          submit={
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 18 18"
-            >
-              <g
-                fill="none"
-                fillRule="evenodd"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="1.67"
-                transform="translate(1 1)"
-              >
-                <circle cx="7.11" cy="7.11" r="7.11" />
-                <path d="M16 16l-3.87-3.87" />
-              </g>
-            </svg>
-          }
-        />
+        {props.filterProducts == 'true' ? (
+          <>{props.children}</>
+        ) : (
+          <>
+            <p className="header-title">Stop looking for an item — find it.</p>
+            <div className="ais-SearchBox">
+              <Autocomplete
+                onSuggestionSelected={onSuggestionSelected}
+                onSuggestionCleared={onSuggestionCleared}
+              />
+            </div>
+          </>
+        )}
       </header>
 
       <Configure snippetEllipsisText="…" removeWordsIfNoResults="allOptional" />
@@ -199,8 +192,8 @@ const Search = props => {
             <div className="container-body">
               {props.filterProducts === 'true' ? (
                 <>
-                  <Panel header="Hair & Product Types">
-                    <RefinementList attribute="pageType" />
+                  <Panel header="All brands">
+                    <RefinementList attribute="brand" />
                   </Panel>
                 </>
               ) : (
@@ -239,7 +232,7 @@ const Search = props => {
 
         <section className="container-results">
           <header className="container-header container-options">
-            <SortBy
+            {/* <SortBy
               className="container-option"
               defaultRefinement="howtoArticle"
               items={[
@@ -249,7 +242,7 @@ const Search = props => {
                   label: 'Published Date Asc',
                 },
               ]}
-            />
+            /> */}
 
             <HitsPerPage
               className="container-option"
@@ -270,6 +263,8 @@ const Search = props => {
               defaultRefinement={9}
             />
           </header>
+
+          {/* <VirtalSearchBox defaultRefinement={query} /> */}
 
           {props.filterProducts === 'true' ? (
             <Index indexName="products">

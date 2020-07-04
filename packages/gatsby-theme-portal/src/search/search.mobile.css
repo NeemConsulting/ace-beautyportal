@@ -142,28 +142,6 @@
 
   /* SearchBox */
 
-  .header .ais-SearchBox {
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    transform: translateY(50%);
-    width: 100vw;
-  }
-
-  .header .ais-SearchBox .ais-SearchBox-form {
-    margin: auto;
-    max-width: 90%;
-  }
-
-  .ais-SearchBox .ais-SearchBox-input,
-  .ais-RefinementList .ais-SearchBox-input {
-    font-size: 1rem;
-  }
-
-  .ais-RefinementList .ais-SearchBox-input {
-    min-height: 48px;
-  }
-
   /* RefinementList */
 
   .ais-RefinementList-list {

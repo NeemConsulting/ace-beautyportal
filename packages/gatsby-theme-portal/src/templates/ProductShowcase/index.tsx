@@ -50,17 +50,18 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
     <Layout>
       <SEO lang={'tl-ph'} title="" description="" keywords="" />
       <Breadcrumb pageTitle="Product Showcase" />
-      <SanityTextBlock
-        name={introBlockName}
-        _rawTextBlockBody={introBody}
-        textBlockType={introBlockType}
-      />
       <Search
         collapse="true"
         grid="true"
         filterProducts="true"
         indices={searchIndices}
-      />
+      >
+        <SanityTextBlock
+          name={introBlockName}
+          _rawTextBlockBody={introBody}
+          textBlockType={introBlockType}
+        />
+      </Search>
       <ImageBlock
         name={imgBlock[0].name}
         image={imgBlock[0].image}
