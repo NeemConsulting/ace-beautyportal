@@ -4,7 +4,6 @@ import {
   InstantSearch,
   RefinementList,
   Index,
-  SortBy,
   Pagination,
   ClearRefinements,
   Highlight,
@@ -134,7 +133,7 @@ const Search = props => {
       root={{ props: { ref } }}
     >
       <header className="header" ref={headerRef}>
-        {props.filterProducts == 'true' ? (
+        {props.filterProducts === 'true' ? (
           <>{props.children}</>
         ) : (
           <>
@@ -153,7 +152,13 @@ const Search = props => {
 
       <main className="container" ref={containerRef}>
         <div className="container-wrapper">
-          <section className="container-filters" onKeyUp={onKeyUp}>
+          <section
+            style={{
+              position: `${props.filterProducts === 'true' ? 'fixed' : 'null'}`,
+            }}
+            className="container-filters"
+            onKeyUp={onKeyUp}
+          >
             <div className="container-header">
               <h2>Filters</h2>
 
