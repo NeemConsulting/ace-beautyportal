@@ -17,7 +17,6 @@ const TileSlider: FunctionComponent<TileSliderInterface> = ({
   searchCtaLabel,
   searchTags,
 }) => {
-  console.log(searchCtaLabel);
   const [swiper, updateSwiper] = useState(null);
   const [isLastSlide, setIsLastSlide] = useState(false);
   const [isFirstSlide, setIsFirstSlide] = useState(true);
@@ -51,7 +50,14 @@ const TileSlider: FunctionComponent<TileSliderInterface> = ({
             to={slide.path ? slide.path : slide.slug.current}
           >
             {slide.image && (
-              <Img fluid={slide.image.asset.fluid} alt={slide.image.alt} />
+              <Img
+                fluid={{
+                  ...slide.image.asset.fluid,
+                  sizes:
+                    '(max-width: 512px) 25vw, (max-width: 768px) 50vw, (max-width: 1268px) 75vw, (max-width: 1680px) 90vw, 90vw',
+                }}
+                alt={slide.image.alt}
+              />
             )}
             <h3 className={classes.sliderItemCaption}>
               <span>{slide.name}</span>

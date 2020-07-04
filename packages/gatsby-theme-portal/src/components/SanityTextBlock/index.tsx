@@ -30,6 +30,7 @@ const SanityTextBlock: FunctionComponent<SanityTextBlockInterface> = ({
     >
       <Container>
         <div className={classes.sectionDescription}>
+          <h1>{name}</h1>
           <BlockContent
             serializers={blockTypeDefaultSerializers}
             blocks={_rawTextBlockBody}

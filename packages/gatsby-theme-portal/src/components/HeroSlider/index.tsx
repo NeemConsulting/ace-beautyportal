@@ -68,7 +68,11 @@ const HeroSlider: FunctionComponent<HeroSliderInterface> = ({
             {slide.heroImage &&
               (index ? (
                 <Img
-                  fluid={slide.heroImage.asset.fluid}
+                  fluid={{
+                    ...slide.heroImage.asset.fluid,
+                    sizes:
+                      '(max-width: 512px) 30vw, (max-width: 768px) 60vw, (max-width: 1268px) 90vw, (max-width: 1680px) 100vw, 100vw',
+                  }}
                   alt={slide.heroImage.alt}
                   style={{ maxWidth: 752 }}
                   imgStyle={{ objectPosition: 'top center' }}
