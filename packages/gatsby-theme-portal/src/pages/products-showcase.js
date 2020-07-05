@@ -5,7 +5,6 @@ import ProductShowcase from '../templates/ProductShowcase';
 const ProductShowcasePage = ({ data }) => {
   return (
     <div>
-      <h1>Product Showcase</h1>
       <ProductShowcase data={data} />
     </div>
   );

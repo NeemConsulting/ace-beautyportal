@@ -4,14 +4,13 @@ import {
   InstantSearch,
   RefinementList,
   Index,
-  Pagination,
   ClearRefinements,
   Highlight,
-  Hits,
   HitsPerPage,
   Panel,
   Configure,
   Snippet,
+  InfiniteHits,
 } from 'react-instantsearch-dom';
 import algoliasearch from 'algoliasearch/lite';
 import Autocomplete from './autocomplete';
@@ -132,33 +131,23 @@ const Search = props => {
       onSearchStateChange={props.onSearchStateChange}
       root={{ props: { ref } }}
     >
-      <header className="header" ref={headerRef}>
-        {props.filterProducts === 'true' ? (
-          <>{props.children}</>
-        ) : (
-          <>
-            <p className="header-title">Stop looking for an item — find it.</p>
-            <div className="ais-SearchBox">
-              <Autocomplete
-                onSuggestionSelected={onSuggestionSelected}
-                onSuggestionCleared={onSuggestionCleared}
-              />
-            </div>
-          </>
-        )}
-      </header>
+      {props.filterProducts !== 'true' && (
+        <header className="header" ref={headerRef}>
+          <p className="header-title">Stop looking for an item — find it.</p>
+          <div className="ais-SearchBox">
+            <Autocomplete
+              onSuggestionSelected={onSuggestionSelected}
+              onSuggestionCleared={onSuggestionCleared}
+            />
+          </div>
+        </header>
+      )}
 
       <Configure snippetEllipsisText="…" removeWordsIfNoResults="allOptional" />
 
       <main className="container" ref={containerRef}>
         <div className="container-wrapper">
-          <section
-            style={{
-              position: `${props.filterProducts === 'true' ? 'fixed' : 'null'}`,
-            }}
-            className="container-filters"
-            onKeyUp={onKeyUp}
-          >
+          <section className="container-filters" onKeyUp={onKeyUp}>
             <div className="container-header">
               <h2>Filters</h2>
 
@@ -273,17 +262,17 @@ const Search = props => {
 
           {props.filterProducts === 'true' ? (
             <Index indexName="products">
-              <Hits hitComponent={Hit} />
+              <InfiniteHits showPrevious={false} hitComponent={Hit} />
             </Index>
           ) : (
             <Index indexName="howtoArticle">
-              <Hits hitComponent={Hit} />
+              <InfiniteHits showPrevious={false} hitComponent={Hit} />
             </Index>
           )}
 
           <NoResults />
 
-          <footer className="container-footer">
+          {/* <footer className="container-footer">
             <Pagination
               padding={2}
               showFirst={false}
@@ -329,30 +318,32 @@ const Search = props => {
                 ),
               }}
             />
-          </footer>
+          </footer> */}
         </section>
       </main>
 
-      <aside data-layout="mobile">
-        <button
-          className="filters-button"
-          data-action="open-overlay"
-          onClick={openFilters}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M15 1H1l5.6 6.3v4.37L9.4 13V7.3z"
-              stroke="#fff"
-              strokeWidth="1.29"
-              fill="none"
-              fillRule="evenodd"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-          Filters
-        </button>
-      </aside>
+      {props.filterProducts !== 'true' && (
+        <aside data-layout="mobile">
+          <button
+            className="filters-button"
+            data-action="open-overlay"
+            onClick={openFilters}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M15 1H1l5.6 6.3v4.37L9.4 13V7.3z"
+                stroke="#fff"
+                strokeWidth="1.29"
+                fill="none"
+                fillRule="evenodd"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            Filters
+          </button>
+        </aside>
+      )}
     </InstantSearch>
   );
 };
