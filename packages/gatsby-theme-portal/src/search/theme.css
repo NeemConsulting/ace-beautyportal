@@ -10,6 +10,54 @@ a[class^='ais-'] {
   text-decoration: none;
 }
 
+.ais-InfiniteHits-loadMore {
+  color: #000;
+  border: none;
+  cursor: pointer;
+  margin: auto;
+  display: flex;
+  position: relative;
+  font-size: 0.875rem;
+  transform: perspective(1px) translateZ(0);
+  margin-top: 32px;
+  transition: all 0.3s;
+  font-weight: 700;
+  padding-top: 10px;
+  padding-left: 16px;
+  margin-bottom: 32px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+  text-decoration: none;
+  background-color: #f50057;
+}
+
+.ais-InfiniteHits-loadMore:hover {
+  background: black;
+  color: white;
+}
+
+.ais-InfiniteHits-loadMore:hover:before {
+  transform: 'scaleY(1)';
+}
+
+.ais-InfiniteHits-loadMore:focus {
+  transform: 'perspective(1px) translateZ(0)';
+}
+
+@media (min-width: 960px) {
+  .ais-InfiniteHits-loadMore {
+    font-size: 1.125rem;
+    padding-top: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 14px;
+  }
+}
+
+.ais-InfiniteHits-loadMore--disabled {
+  display: none;
+}
+
 /*
   We need to target the root element because Angular InstantSearch
   creates web components which are not targetable with the `*` selector.
@@ -72,26 +120,26 @@ a[class^='ais-'] {
 
 /* Hits */
 
-.ais-Hits-list {
+.ais-InfiniteHits-list {
   display: grid;
   grid-gap: 40px;
   grid-template-columns: 1fr;
 }
 
 @media (min-width: 680px) {
-  .ais-Hits-list {
+  .ais-InfiniteHits-list {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (min-width: 900px) {
-  .ais-Hits-list {
+  .ais-InfiniteHits-list {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
 @media (min-width: 1200px) {
-  .ais-Hits-list {
+  .ais-InfiniteHits-list {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }

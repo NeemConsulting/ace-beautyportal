@@ -104,7 +104,7 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
         _rawTextBlockBody={thirdBody}
         textBlockType={thirdBlockType}
       />
-      <Grid container xs={12} spacing={2}>
+      <Grid item={true} container xs={12} spacing={2}>
         <Container>
           {tagsList && <Tags title="Find something" data={tagsList} />}
         </Container>

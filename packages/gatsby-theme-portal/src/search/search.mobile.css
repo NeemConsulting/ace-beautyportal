@@ -6,7 +6,7 @@
     border-radius: 16px;
     left: 0;
     max-width: initial;
-    padding-bottom: 4rem;
+    padding-bottom: 8rem;
     position: fixed;
     top: 0;
     transform: translateY(120vh);
@@ -46,7 +46,8 @@
 
   .filtering .container-filters {
     position: absolute;
-    transform: translateY(4rem);
+    transform: translateY(3rem);
+    z-index: 2;
   }
 
   .filtering .container-filters-footer {
@@ -110,6 +111,7 @@
     left: 50%;
     min-height: 40px;
     min-width: 112px;
+    z-index: 2;
     position: fixed;
     transform: translateX(-50%);
   }
@@ -141,28 +143,6 @@
   }
 
   /* SearchBox */
-
-  .header .ais-SearchBox {
-    bottom: 0;
-    left: 0;
-    position: absolute;
-    transform: translateY(50%);
-    width: 100vw;
-  }
-
-  .header .ais-SearchBox .ais-SearchBox-form {
-    margin: auto;
-    max-width: 90%;
-  }
-
-  .ais-SearchBox .ais-SearchBox-input,
-  .ais-RefinementList .ais-SearchBox-input {
-    font-size: 1rem;
-  }
-
-  .ais-RefinementList .ais-SearchBox-input {
-    min-height: 48px;
-  }
 
   /* RefinementList */
 
