@@ -90,6 +90,9 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
       fontSize: '.75rem',
       fontWeight: 700,
     },
+    slideWidth: {
+      maxWidth: 752,
+    },
     callToAction: {
       fontSize: '.875rem',
       fontWeight: 700,
