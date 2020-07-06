@@ -104,8 +104,8 @@ exports.onCreateWebpackConfig = ({
       module: {
         rules: [
           {
-            exclude: require.resolve(__dirname, 'node_modules'),
-            include: require.resolve(
+            exclude: path.resolve(__dirname, 'node_modules'),
+            include: path.resolve(
               __dirname,
               'src/_[A-Za-z]+\\.scss$|[A-Za-z]+\\.css$/'
             ),
