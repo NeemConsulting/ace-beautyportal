@@ -65,17 +65,34 @@ const HeroSlider: FunctionComponent<HeroSliderInterface> = ({
       <Swiper {...params} getSwiper={updateSwiper}>
         {slides.map((slide: any, index: number) => (
           <div key={slide.path}>
-            {slide.heroImage && (
-              <Img
-                fluid={{
-                  ...slide.heroImage.asset.fluid,
-                  sizes:
-                    '(max-width: 300px) calc(25vw - 20px), (max-width: 600px) calc(50vw - 40px), 752px',
-                }}
-                alt={slide.heroImage.alt}
-                imgStyle={{ objectPosition: 'top center' }}
-              />
-            )}
+            {slide.heroImage &&
+              (index ? (
+                <Img
+                  fluid={{
+                    ...slide.heroImage.asset.fluid,
+                    sizes:
+                      '(max-width: 512px) 25vw, (max-width: 768px) 50vw, (max-width: 1268px) 75vw, (max-width: 1680px) 100vw, 100vw',
+                  }}
+                  alt={slide.heroImage.alt}
+                  style={{ maxWidth: 752 }}
+                  imgStyle={{ objectPosition: 'top center' }}
+                />
+              ) : (
+                <figure>
+                  <picture>
+                    <source
+                      srcSet={`${slide.heroImage.asset.url}?w=752&h=421&auto=format 1x, ${slide.heroImage.asset.url}?w=752&h=421&auto=format&dpr=2 2x`}
+                      media="screen and (min-width: 767px)"
+                    />
+                    <img
+                      src={`${slide.heroImage.asset.url}?w=420&h=240&auto=format`}
+                      alt={slide.heroImage.alt}
+                      width="752"
+                      height="421"
+                    />
+                  </picture>
+                </figure>
+              ))}
             <div className={classes.copy}>
               <div className={classes.copyInner}>
                 <div className={classes.slideType}>{slide._type}</div>
