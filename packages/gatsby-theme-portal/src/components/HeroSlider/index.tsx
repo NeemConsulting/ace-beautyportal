@@ -71,7 +71,7 @@ const HeroSlider: FunctionComponent<HeroSliderInterface> = ({
                   fluid={{
                     ...slide.heroImage.asset.fluid,
                     sizes:
-                      '(max-width: 512px) 30vw, (max-width: 768px) 60vw, (max-width: 1268px) 90vw, (max-width: 1680px) 100vw, 100vw',
+                      '(max-width: 512px) 25vw, (max-width: 768px) 50vw, (max-width: 1268px) 75vw, (max-width: 1680px) 100vw, 100vw',
                   }}
                   alt={slide.heroImage.alt}
                   style={{ maxWidth: 752 }}
@@ -85,7 +85,7 @@ const HeroSlider: FunctionComponent<HeroSliderInterface> = ({
                       media="screen and (min-width: 767px)"
                     />
                     <img
-                      src={`${slide.heroImage.asset.url}?w=700&h=392&auto=format`}
+                      src={`${slide.heroImage.asset.url}?w=420&h=240&auto=format`}
                       alt={slide.heroImage.alt}
                       width="752"
                       height="421"

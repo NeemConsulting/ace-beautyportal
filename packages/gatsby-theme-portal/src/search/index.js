@@ -33,7 +33,7 @@ const searchClient = algoliasearch(
 );
 
 const Hit = ({ hit }) => (
-  <Link className={'ais-InfiniteHits-item__link'} to={`/${hit.slug.current}/`}>
+  <Link className={'ais-InfiniteHits-item__link'} to={`/${hit.path}/`}>
     <article className="hit">
       <header className="hit-image-container">
         {/* <img
@@ -44,14 +44,14 @@ const Hit = ({ hit }) => (
         <picture>
           <source
             media="(max-width: 799px)"
-            srcset={`${hit.image.asset.url}?w=180&h=180&fit=crop&fm=webp`}
+            srcset={`${hit.image.asset.url}?w=180&h=180&fit=crop`}
           />
           <source
             media="(min-width: 800px)"
-            srcset={`${hit.image.asset.url}?w=240&h=240&fit=crop&fm=webp`}
+            srcset={`${hit.image.asset.url}?w=240&h=240&fit=crop`}
           />
           <img
-            src={`${hit.image.asset.url}?w=240&h=240&fit=crop&fm=webp`}
+            src={`${hit.image.asset.url}?w=240&h=240&fit=crop`}
             alt="Chris standing up holding his daughter Elva"
             alt={hit.image.alt}
             className="hit-image"
