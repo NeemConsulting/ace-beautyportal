@@ -22,7 +22,7 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
     ...galleryShampooArticles,
     ...featureShampooArticles,
   ];
-  const seeAllShampoo = props.data.seeAllShampoo.nodes[0].name;
+  const seeAllShampoo = props.data.seeAllShampoo.nodes;
   const howtoHairSprayArticles = props.data.howtoHairSprayArticles.nodes;
   const galleryHairSprayArticles = props.data.galleryHairSprayArticles.nodes;
   const featureHairSprayArticles = props.data.featureHairSprayArticles.nodes;
@@ -31,7 +31,7 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
     ...galleryHairSprayArticles,
     ...featureHairSprayArticles,
   ];
-  const seeAllHairSpray = props.data.seeAllHairSpray.nodes[0].name;
+  const seeAllHairSpray = props.data.seeAllHairSpray.nodes;
   const imgBlock = props.data.imageBlock.edges.map(edge => edge.node);
   const introBlockName = props.data.productShowcaseIntro.name;
   const introBlockType = props.data.productShowcaseIntro.textBlockType;
@@ -45,7 +45,7 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
       tags: { nodes: tagsList },
     },
   } = props;
-  console.log('introBlockName', props.data.productShowcaseIntro);
+  console.log('seeAllHairSpray', seeAllHairSpray);
   return (
     <Layout>
       <SEO lang={'tl-ph'} title="" description="" keywords="" />
@@ -72,14 +72,16 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
 
       <Grid item xs={12}>
         <section>
-          <SanityArticleSlider
-            name="articles"
-            slides={allHairSprayArticles}
-            headline="Hair Spray Hacks"
-            slideType={{ name: 'tile' }}
-            searchTags={seeAllHairSpray}
-            searchCtaLabel=""
-          />
+          {allHairSprayArticles.length > 0 && (
+            <SanityArticleSlider
+              name="articles"
+              slides={allHairSprayArticles}
+              headline="Hair Spray Hacks"
+              slideType={{ name: 'tile' }}
+              searchTags={seeAllHairSpray}
+              searchCtaLabel="See all articles"
+            />
+          )}
         </section>
       </Grid>
       <SanityTextBlock
@@ -89,14 +91,16 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
       />
       <Grid item xs={12}>
         <section>
-          <SanityArticleSlider
-            name="articles"
-            slides={allShampooArticles}
-            headline="Our Top Shampoo Tips"
-            slideType={{ name: 'tile' }}
-            searchTags={seeAllShampoo}
-            searchCtaLabel=""
-          />
+          {allShampooArticles.length > 0 && (
+            <SanityArticleSlider
+              name="articles"
+              slides={allShampooArticles}
+              headline="Our Top Shampoo Tips"
+              slideType={{ name: 'tile' }}
+              searchTags={seeAllShampoo}
+              searchCtaLabel="See all articles"
+            />
+          )}
         </section>
       </Grid>
       <SanityTextBlock

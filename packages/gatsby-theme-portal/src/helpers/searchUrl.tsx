@@ -15,12 +15,10 @@ export const getSearchQueryUrl = (query: string, url = searchUrl) => {
 // Generate search URL with TagNames Array including Tag Categories
 export const getSearchUrlWithTagsAndCategory = tags => {
   const query = tags
-    .map((tag, index) => {
-      return `refinementList[tags.name][${index}]=${encodeURIComponent(
-        tag.name
-      )}`;
+    .map(tag => {
+      return `tag=${encodeURIComponent(tag.name)}`;
     })
     .join('&');
 
-  return '/search-results?' + query;
+  return '/search-results/?' + query;
 };
