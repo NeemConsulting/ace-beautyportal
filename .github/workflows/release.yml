@@ -1,5 +1,11 @@
 name: Release | Build and Deploy
 on:
+  push:
+    branches:
+      - "releases/**"
+    paths:
+      - packages/tl-ph/**
+      - packages/gatsby-theme-portal/**
   create:
     branches:
       - "releases/**"
@@ -61,8 +67,7 @@ jobs:
         with:
           publish-dir: "packages/tl-ph/public"
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          production-branch: master
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_QA_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_QA_WEB_SITE_ID }}
       - run: echo netlify URL ${{ steps.netlify-deploy.outputs.deploy-url }}
