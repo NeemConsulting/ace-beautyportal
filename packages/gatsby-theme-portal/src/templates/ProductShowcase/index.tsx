@@ -7,14 +7,21 @@ const SanityTextBlock = loadable(
   }
 );
 
+const ImageBlock = loadable(() => import('../../components/ImageBlock'), {
+  fallback: <div style={{ height: 500 }}>loading...</div>,
+});
+
+const SanityArticleSlider = loadable(
+  () => import('../../components/SanityArticleSlider'),
+  { fallback: <div style={{ height: 500 }}>loading...</div> }
+);
+
 import SEO from '../../components/Seo';
 import Layout from '../../components/Layout';
 import Breadcrumb from '../../components/Breadcrumb';
 import Search from '../../search';
 import Tags from '../../components/Tags';
 import Grid from '@material-ui/core/Grid';
-import SanityArticleSlider from '../../components/SanityArticleSlider';
-import ImageBlock from '../../components/ImageBlock';
 import Container from '@material-ui/core/Container';
 
 const searchIndices = [{ name: `products`, title: `products`, hitComp: `Hit` }];
