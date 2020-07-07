@@ -45,9 +45,11 @@
   }
 
   .filtering .container-filters {
-    position: absolute;
+    position: fixed;
     transform: translateY(3rem);
     z-index: 2;
+    overflow: auto;
+    max-height: 100vh;
   }
 
   .filtering .container-filters-footer {
