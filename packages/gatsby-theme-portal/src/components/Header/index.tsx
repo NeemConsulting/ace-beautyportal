@@ -28,6 +28,7 @@ const Header: FunctionComponent = () => {
         <div className={classes.headerContentWrapper}>
           <div className={classes.logo}>
             <Link to="/">
+              <span style={{ display: 'none' }}>Beauty</span>
               <Logo />
             </Link>
           </div>

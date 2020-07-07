@@ -1,11 +1,18 @@
 import React from 'react';
+import loadable from '@loadable/component';
+const SanityTextBlock = loadable(
+  () => import('../../components/SanityTextBlock'),
+  {
+    fallback: <div style={{ height: '380px' }}>loading...</div>,
+  }
+);
+
 import SEO from '../../components/Seo';
 import Layout from '../../components/Layout';
 import Breadcrumb from '../../components/Breadcrumb';
 import Search from '../../search';
 import Tags from '../../components/Tags';
 import Grid from '@material-ui/core/Grid';
-import SanityTextBlock from '../../components/SanityTextBlock';
 import SanityArticleSlider from '../../components/SanityArticleSlider';
 import ImageBlock from '../../components/ImageBlock';
 import Container from '@material-ui/core/Container';
