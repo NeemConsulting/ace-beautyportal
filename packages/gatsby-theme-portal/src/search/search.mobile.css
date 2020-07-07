@@ -21,6 +21,16 @@
     padding: 2rem 2rem 0 2rem;
   }
 
+  .show-results {
+    margin-top: 15%;
+    font-size: 20px;
+  }
+
+  .header-title {
+    display: none;
+    font-size: 24px;
+  }
+
   .filtering .header {
     /*
       Closing panel on outter click didn't work on mobile safari.
@@ -125,7 +135,7 @@
   }
 
   .container {
-    padding: 4rem 2rem;
+    padding: 2rem 2rem;
   }
 
   .container-options {
@@ -133,13 +143,13 @@
   }
 
   .header {
-    background: linear-gradient(to bottom, #ae8600, #885b01);
+    background: linear-gradient(to bottom, #b8f0c0, #b8f0c0);
     /* background-image: url('./assets/cover-mobile.png');
     background-image: url('./assets/cover-mobile.png'),
       linear-gradient(to bottom, #ae8600, #885b01); */
     background-position: bottom;
     background-size: cover;
-    min-height: 300px;
+    min-height: 200px;
     position: relative;
     transition: transform 200ms ease-out;
   }

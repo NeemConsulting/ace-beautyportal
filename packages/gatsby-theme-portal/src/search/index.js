@@ -145,6 +145,10 @@ const Search = props => {
 
       <Configure snippetEllipsisText="…" removeWordsIfNoResults="allOptional" />
 
+      <div className="show-results">
+        <ResultsNumberMobile />
+      </div>
+
       <main className="container" ref={containerRef}>
         <div className="container-wrapper">
           <section className="container-filters" onKeyUp={onKeyUp}>

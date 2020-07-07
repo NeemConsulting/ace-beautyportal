@@ -13,13 +13,13 @@ h2 {
 
 .header {
   align-items: center;
-  background: linear-gradient(to bottom, #fbc300, #c98a00);
+  background: linear-gradient(to bottom, #b8f0c0, #b8f0c0);
   /* background-image: url('./assets/cover.png');
   background-image: url('./assets/cover.png'),
     linear-gradient(to bottom, #fbc300, #c98a00); */
   background-position: center;
   background-size: cover;
-  color: #fff;
+  color: #21243d;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -40,6 +40,13 @@ h2 {
 .header-title {
   font-size: 38px;
   font-weight: 300;
+}
+
+.show-results {
+  display: flex;
+  justify-content: center;
+  margin-top: 6%;
+  font-size: 25px;
 }
 
 /* Containers */
