@@ -29,7 +29,7 @@ const Breadcrumb: FunctionComponent<BreadcrumbInterface> = ({
                     to={getSearchUrl(
                       searchResultPath,
                       tag.tagCategory.name,
-                      'tags.tagCategory.name'
+                      'category'
                     )}
                     className={classes.link}
                   >
@@ -38,7 +38,7 @@ const Breadcrumb: FunctionComponent<BreadcrumbInterface> = ({
                 </li>
                 <li className={classes.item}>
                   <Link
-                    to={getSearchUrl(searchResultPath, tag.name, 'tags.name')}
+                    to={getSearchUrl(searchResultPath, tag.name, 'category')}
                     className={classes.link}
                   >
                     {tag.name}
