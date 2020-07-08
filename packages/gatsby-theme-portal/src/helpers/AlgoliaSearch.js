@@ -132,6 +132,7 @@ const productQuery = `{
       {
         objectID:_id
         slug{current}
+        path
         pageType:_type
         title:name
         subtitle:tagLine
@@ -173,11 +174,11 @@ const settings = {
   ranking: ['desc(publishedAt)'],
   hitsPerPage: 10,
   attributesToSnippet: [
-    `featureBody:30`,
-    `galleryBody:30`,
-    `howTobody:30`,
-    `usageBody:30`,
-    `ingredientBody:30`,
+    `featureBody:10`,
+    `galleryBody:10`,
+    `howTobody:10`,
+    `usageBody:10`,
+    `ingredientBody:10`,
   ],
 };
 

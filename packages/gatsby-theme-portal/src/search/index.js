@@ -186,6 +186,9 @@ const Search = props => {
             <div className="container-body">
               {props.filterProducts === 'true' ? (
                 <>
+                  <Panel header="Category">
+                    <RefinementList attribute="tag" limit={6} showMore={true} />
+                  </Panel>
                   <Panel header="All brands">
                     <RefinementList attribute="brand" />
                   </Panel>
@@ -322,7 +325,7 @@ const Search = props => {
         </section>
       </main>
 
-      {props.filterProducts !== 'true' && (
+      {
         <aside data-layout="mobile">
           <button
             className="filters-button"
@@ -343,7 +346,7 @@ const Search = props => {
             Filters
           </button>
         </aside>
-      )}
+      }
     </InstantSearch>
   );
 };
