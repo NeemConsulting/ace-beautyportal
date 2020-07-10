@@ -9,6 +9,7 @@ const routeStateDefaultValues = {
   pageTypes: undefined,
   duration: undefined,
   tag: undefined,
+  category: undefined,
   brand: undefined,
   sortBy: 'howtoArticle',
   hitsPerPage: '9',
@@ -22,6 +23,7 @@ const searchStateToURL = searchState => {
       searchState.refinementList && searchState.refinementList.pageType,
     duration: searchState.refinementList && searchState.refinementList.duration,
     tag: searchState.refinementList && searchState.refinementList.tag,
+    category: searchState.refinementList && searchState.refinementList.category,
     brand: searchState.refinementList && searchState.refinementList.brand,
     sortBy: searchState.sortBy,
     hitsPerPage:
@@ -63,6 +65,12 @@ const searchStateToURL = searchState => {
   if (routeState.tag && routeState.tag !== routeStateDefaultValues.tag) {
     queryParameters.tag = routeState.tag.map(encodeURIComponent);
   }
+  if (
+    routeState.category &&
+    routeState.category !== routeStateDefaultValues.category
+  ) {
+    queryParameters.category = routeState.category.map(encodeURIComponent);
+  }
   if (routeState.brand && routeState.brand !== routeStateDefaultValues.brand) {
     queryParameters.brand = routeState.brand.map(encodeURIComponent);
   }
@@ -97,6 +105,7 @@ const urlToSearchState = location => {
     pageTypes = [],
     duration = [],
     tag = [],
+    category = [],
     brand = [],
     hitsPerPage,
     sortBy,
@@ -109,6 +118,9 @@ const urlToSearchState = location => {
     ? duration
     : [duration].filter(Boolean);
   const allTags = Array.isArray(tag) ? tag : [tag].filter(Boolean);
+  const allCategories = Array.isArray(category)
+    ? category
+    : [category].filter(Boolean);
   const allBrands = Array.isArray(brand) ? brand : [brand].filter(Boolean);
 
   const searchState = { range: {} };
@@ -132,6 +144,11 @@ const urlToSearchState = location => {
   if (allTags.length) {
     searchState.refinementList = {
       tag: allTags.map(decodeURIComponent),
+    };
+  }
+  if (allCategories.length) {
+    searchState.refinementList = {
+      category: allCategories.map(decodeURIComponent),
     };
   }
   if (allBrands.length) {

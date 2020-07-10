@@ -1,5 +1,6 @@
 context("Search results tests", () => {
   beforeEach(() => {
+    cy.viewport(1440, 900); //laptop
     cy.visit("http://localhost:8000/search-results");
   });
 
