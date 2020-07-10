@@ -13,6 +13,7 @@ import {
   InfiniteHits,
 } from 'react-instantsearch-dom';
 import algoliasearch from 'algoliasearch/lite';
+import Img from 'gatsby-image';
 import Autocomplete from './autocomplete';
 import {
   ClearFiltersMobile,
@@ -32,49 +33,51 @@ const searchClient = algoliasearch(
     '7d73d09b89c03c358d0f1a3ac49fd828'
 );
 
-const Hit = ({ hit }) => (
-  <Link className={'ais-InfiniteHits-item__link'} to={`/${hit.path}/`}>
-    <article className="hit">
-      <header className="hit-image-container">
-        {/* <img
-          src={`${hit.image.asset.url}?w=240&h=240&fit=crop&fm=webp`}
-          alt={hit.image.alt}
-          className="hit-image"
-        /> */}
-        <picture>
-          <source
-            media="(max-width: 799px)"
-            srcset={`${hit.image.asset.url}?w=180&h=180&fit=crop`}
-          />
-          <source
-            media="(min-width: 800px)"
-            srcset={`${hit.image.asset.url}?w=240&h=240&fit=crop`}
-          />
-          <img
-            src={`${hit.image.asset.url}?w=240&h=240&fit=crop`}
-            alt="Chris standing up holding his daughter Elva"
-            alt={hit.image.alt}
-            className="hit-image"
-          />
-        </picture>
-      </header>
+const Hit = ({ hit }) => {
+  const {
+    path,
+    title,
+    image: { asset, alt },
+  } = hit;
+  return (
+    <Link
+      className={'ais-InfiniteHits-item__link'}
+      to={`/${path}/`}
+      aria-label={title}
+    >
+      <article className="hit">
+        <header className="hit-image-container">
+          <div className="image-wrapper">
+            <figure>
+              <Img
+                fluid={{
+                  ...asset.fluid,
+                  sizes:
+                    '(max-width: 768px) 20vw, (max-width: 1268px) 30vw, (max-width: 1680px) 40vw, 50vw',
+                }}
+                alt={alt}
+              />
+            </figure>
+          </div>
+        </header>
 
-      <div className="hit-info-container">
-        <p className="hit-category"></p>
-        <h1>
-          <Highlight attribute="title" tagName="mark" hit={hit} />
-        </h1>
-        <p className="hit-description">
-          <Snippet attribute="ingredientBody" hit={hit} tagName="mark" />
-          <Snippet attribute="usageBody" hit={hit} tagName="mark" />
-          <Snippet attribute="galleryBody" hit={hit} tagName="mark" />
-          <Snippet attribute="howTobody" hit={hit} tagName="mark" />
-          <Snippet attribute="featureBody" hit={hit} tagName="mark" />
-        </p>
-      </div>
-    </article>
-  </Link>
-);
+        <div className="hit-info-container">
+          <p className="hit-category"></p>
+          <h1>
+            <Highlight attribute="title" tagName="mark" hit={hit} />
+          </h1>
+          <p className="hit-description">
+            <Snippet attribute="ingredientBody" hit={hit} tagName="mark" />
+            <Snippet attribute="usageBody" hit={hit} tagName="mark" />
+            <Snippet attribute="galleryBody" hit={hit} tagName="mark" />
+            <Snippet attribute="howTobody" hit={hit} tagName="mark" />
+            <Snippet attribute="featureBody" hit={hit} tagName="mark" />
+          </p>
+        </div>
+      </article>
+    </Link>
+  );
+};
 
 const Search = props => {
   console.log('propsSearch', props);
@@ -132,8 +135,10 @@ const Search = props => {
       root={{ props: { ref } }}
     >
       {props.filterProducts !== 'true' && (
-        <header className="header" ref={headerRef}>
-          <p className="header-title">Stop looking for an item — find it.</p>
+        <header className="search-header" ref={headerRef}>
+          <p className="search-header-title">
+            Stop looking for an item — find it.
+          </p>
           <div className="ais-SearchBox">
             <Autocomplete
               onSuggestionSelected={onSuggestionSelected}
@@ -149,7 +154,7 @@ const Search = props => {
         <ResultsNumberMobile />
       </div>
 
-      <main className="container" ref={containerRef}>
+      <main className="search-container" ref={containerRef}>
         <div className="container-wrapper">
           <section className="container-filters" onKeyUp={onKeyUp}>
             <div className="container-header">
