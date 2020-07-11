@@ -1,11 +1,5 @@
 name: Release | Build and Deploy
 on:
-  push:
-    branches:
-      - "releases/**"
-    paths:
-      - packages/tl-ph/**
-      - packages/gatsby-theme-portal/**
   create:
     branches:
       - "releases/**"
