@@ -13,7 +13,7 @@ on:
       - packages/tl-ph/**
       - packages/gatsby-theme-portal/**
 jobs:
-  web:
+  Release Web:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -67,6 +67,7 @@ jobs:
         with:
           publish-dir: "packages/tl-ph/public"
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          production-deploy: true 
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_QA_WEB_SITE_ID }}
