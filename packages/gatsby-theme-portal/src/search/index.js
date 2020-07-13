@@ -34,11 +34,14 @@ const searchClient = algoliasearch(
 );
 
 const Hit = ({ hit }) => {
-  const {
-    path,
-    title,
-    image: { asset, alt },
-  } = hit;
+  const { path, title, heroImage } = hit;
+  const sources = [
+    heroImage.mobileImage.fixed,
+    {
+      ...heroImage.desktopImage.fixed,
+      media: `(min-width: 768px)`,
+    },
+  ];
   return (
     <Link
       className={'ais-InfiniteHits-item__link'}
@@ -47,18 +50,9 @@ const Hit = ({ hit }) => {
     >
       <article className="hit">
         <header className="hit-image-container">
-          <div className="image-wrapper">
-            <figure>
-              <Img
-                fluid={{
-                  ...asset.fluid,
-                  sizes:
-                    '(max-width: 768px) 20vw, (max-width: 1268px) 30vw, (max-width: 1680px) 40vw, 50vw',
-                }}
-                alt={alt}
-              />
-            </figure>
-          </div>
+          <figure>
+            <Img fixed={sources} alt={heroImage.alt} />
+          </figure>
         </header>
 
         <div className="hit-info-container">
@@ -270,67 +264,13 @@ const Search = props => {
             />
           </header>
 
-          {/* <VirtalSearchBox defaultRefinement={query} /> */}
-
-          {props.filterProducts === 'true' ? (
-            <Index indexName="products">
+          {props.indices.map(({ name }) => (
+            <Index key={name} indexName={name}>
               <InfiniteHits showPrevious={false} hitComponent={Hit} />
             </Index>
-          ) : (
-            <Index indexName="howtoArticle">
-              <InfiniteHits showPrevious={false} hitComponent={Hit} />
-            </Index>
-          )}
+          ))}
 
           <NoResults />
-
-          {/* <footer className="container-footer">
-            <Pagination
-              padding={2}
-              showFirst={false}
-              showLast={false}
-              translations={{
-                previous: (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="10"
-                    height="10"
-                    viewBox="0 0 10 10"
-                  >
-                    <g
-                      fill="none"
-                      fillRule="evenodd"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.143"
-                    >
-                      <path d="M9 5H1M5 9L1 5l4-4" />
-                    </g>
-                  </svg>
-                ),
-                next: (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="10"
-                    height="10"
-                    viewBox="0 0 10 10"
-                  >
-                    <g
-                      fill="none"
-                      fillRule="evenodd"
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.143"
-                    >
-                      <path d="M1 5h8M5 9l4-4-4-4" />
-                    </g>
-                  </svg>
-                ),
-              }}
-            />
-          </footer> */}
         </section>
       </main>
 
