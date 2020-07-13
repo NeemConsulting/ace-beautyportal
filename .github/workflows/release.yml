@@ -7,7 +7,7 @@ on:
       - packages/tl-ph/**
       - packages/gatsby-theme-portal/**
 jobs:
-  web:
+  Release_Web:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -61,8 +61,8 @@ jobs:
         with:
           publish-dir: "packages/tl-ph/public"
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          production-branch: master
+          production-deploy: true 
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_QA_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_QA_WEB_SITE_ID }}
       - run: echo netlify URL ${{ steps.netlify-deploy.outputs.deploy-url }}
