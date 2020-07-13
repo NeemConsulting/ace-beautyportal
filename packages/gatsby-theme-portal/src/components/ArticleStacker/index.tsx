@@ -12,7 +12,6 @@ const TileStacker: FunctionComponent<TileStackerInterface> = ({
   headline,
 }) => {
   const classes = useStyles();
-  console.log(slides);
   return (
     <div id={name} className={classes.stacker}>
       <Typography variant="h2" className={classes.title}>
