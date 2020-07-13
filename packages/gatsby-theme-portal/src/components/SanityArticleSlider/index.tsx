@@ -5,7 +5,7 @@ import { SanityArticleSliderInterface } from './models';
 import Container from '@material-ui/core/Container';
 import ArticleTileSlider from '../ArticleTileSlider';
 import HeroSlider from '../HeroSlider';
-import TileStacker from '../TileStacker';
+import TileStacker from '../ArticleStacker';
 
 import useStyles from './styles';
 
@@ -30,8 +30,8 @@ const SanityArticleSlider: FunctionComponent<SanityArticleSliderInterface> = ({
   const getComponentName = (sliderType: string) => {
     sliderType = slideType.name.toLowerCase();
     if (sliderType.indexOf('hero') >= 0) return 'hero';
-    if (sliderType.indexOf('tile') >= 0) return 'tile';
     if (sliderType.indexOf('stacker') >= 0) return 'stacker';
+    if (sliderType.indexOf('tile') >= 0) return 'tile';
 
     return 'default';
   };
