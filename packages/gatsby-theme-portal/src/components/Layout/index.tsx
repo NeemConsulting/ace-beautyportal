@@ -20,6 +20,7 @@ const Layout = ({ className, children }: LayoutProps) => {
           <span>Skip to content</span>
         </a>
         <Header />
+
         <PageSchema type={'WebSite'} />
         <main
           id="main"

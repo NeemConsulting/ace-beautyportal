@@ -18,18 +18,33 @@ const howToArticleQuery = `{
         slug: slug{current}
         title:headline
         subtitle:subheading
-        image: heroImage{asset {
-        url
-        fluid(maxWidth: 140, maxHeight: 140) {
-          aspectRatio
-          base64
-          sizes
-          src
-          srcSet
-          srcSetWebp
-          srcWebp
-        }
-      }    
+        heroImage{
+          desktopImage: asset {
+            url
+            fixed(width: 240, height: 240) {
+              src
+              aspectRatio
+              height
+              width
+              srcSet
+              srcSetWebp
+              srcWebp
+              base64
+            }
+          }
+          mobileImage: asset {
+            url
+            fixed(width: 240, height: 180) {
+              src
+              aspectRatio
+              height
+              width
+              srcSet
+              srcSetWebp
+              srcWebp
+              base64
+            }
+          }    
           alt
           imageCaption
           imageTabID
@@ -60,18 +75,33 @@ const galleryArticleQuery = `{
         pageType:_type
         title:headline
         subtitle:subheading
-        image: heroImage{asset {
-        url
-        fluid(maxWidth: 140, maxHeight: 140) {
-          aspectRatio
-          base64
-          sizes
-          src
-          srcSet
-          srcSetWebp
-          srcWebp
-        }
-      }    
+        heroImage{
+          desktopImage: asset {
+            url
+            fixed(width: 240, height: 240) {
+              src
+              aspectRatio
+              height
+              width
+              srcSet
+              srcSetWebp
+              srcWebp
+              base64
+            }
+          }
+          mobileImage: asset {
+            url
+            fixed(width: 240, height: 180) {
+              src
+              aspectRatio
+              height
+              width
+              srcSet
+              srcSetWebp
+              srcWebp
+              base64
+            }
+          } 
           alt
           imageCaption
           imageTabID
@@ -97,18 +127,33 @@ const featureArticleQuery = `{
         pageType:_type
         title:headline
         subtitle:subheading
-        image: heroImage{asset {
-        url
-        fluid(maxWidth: 140, maxHeight: 140) {
-          aspectRatio
-          base64
-          sizes
-          src
-          srcSet
-          srcSetWebp
-          srcWebp
-        }
-      }    
+        heroImage{
+          desktopImage: asset {
+            url
+            fixed(width: 240, height: 240) {
+              src
+              aspectRatio
+              height
+              width
+              srcSet
+              srcSetWebp
+              srcWebp
+              base64
+            }
+          }
+          mobileImage: asset {
+            url
+            fixed(width: 240, height: 180) {
+              src
+              aspectRatio
+              height
+              width
+              srcSet
+              srcSetWebp
+              srcWebp
+              base64
+            }
+          } 
           alt
           imageCaption
           imageTabID
@@ -136,19 +181,33 @@ const productQuery = `{
         pageType:_type
         title:name
         subtitle:tagLine
-        image: image{
-      asset {
-        url
-        fluid(maxWidth: 140, maxHeight: 140) {
-          aspectRatio
-          base64
-          sizes
-          src
-          srcSet
-          srcSetWebp
-          srcWebp
-        }
-      }    
+        image{
+          desktopImage: asset {
+            url
+            fixed(width: 240, height: 240) {
+              src
+              aspectRatio
+              height
+              width
+              srcSet
+              srcSetWebp
+              srcWebp
+              base64
+            }
+          }
+          mobileImage: asset {
+            url
+            fixed(width: 240, height: 180) {
+              src
+              aspectRatio
+              height
+              width
+              srcSet
+              srcSetWebp
+              srcWebp
+              base64
+            }
+          }    
           alt
           imageCaption
           imageTabID
