@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import { Typography } from '@material-ui/core';
 import { HeroSliderInterface } from './models';
+import { ReactComponent as PlayVideo } from '../../images/icons/play.svg';
 import Swiper from 'react-id-swiper';
 import 'swiper/css/swiper.min.css';
 import useStyles from './styles';
@@ -93,6 +94,12 @@ const HeroSlider: FunctionComponent<HeroSliderInterface> = ({
                   </picture>
                 </figure>
               ))}
+            {slide.heroVideo && (
+              <span className={`icon ${classes.iconPlay}`}>
+                <PlayVideo />
+                <span hidden>Play Video</span>
+              </span>
+            )}
             <div className={classes.copy}>
               <div className={classes.copyInner}>
                 <div className={classes.slideType}>{slide._type}</div>
