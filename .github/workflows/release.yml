@@ -3,9 +3,9 @@ on:
   create:
     branches:
       - "releases/**"
-    paths:
-      - packages/tl-ph/**
-      - packages/gatsby-theme-portal/**
+      paths:
+        - packages/tl-ph/**
+        - packages/gatsby-theme-portal/**
 jobs:
   Release_Web:
     runs-on: ubuntu-latest
