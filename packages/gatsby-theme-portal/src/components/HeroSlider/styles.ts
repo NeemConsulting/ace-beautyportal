@@ -9,6 +9,26 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
       marginBottom: spacing(3),
       marginRight: spacing(3),
     },
+    sliderLink: {
+      textDecoration: 'none',
+      '& h2 span': {
+        color: palette.common.black,
+      },
+      '&:hover': {
+        '& .icon:before': {
+          transform: 'scaleX(1)',
+        },
+        '& .button:before': {
+          transform: 'scaleX(1)',
+        },
+        '& h2 span': {
+          backgroundImage: `linear-gradient(120deg,${palette.secondary.main} 0%,${palette.secondary.main} 100%)`,
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '100% .1875rem',
+          backgroundPosition: '0 100%',
+        },
+      },
+    },
     sliderWrapper: {
       marginLeft: spacing(-2),
       marginRight: spacing(-2),
@@ -140,7 +160,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
       fontSize: '.875rem',
       fontWeight: 700,
       backgroundColor: palette.primary.main,
-      color: palette.common.black,
+      color: palette.common.white,
       paddingTop: spacing(1.25),
       paddingBottom: spacing(1.25),
       paddingLeft: spacing(2),
