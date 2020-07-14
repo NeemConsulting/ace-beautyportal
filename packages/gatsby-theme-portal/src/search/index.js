@@ -40,6 +40,7 @@ const Hit = ({ hit }) => {
     {
       ...heroImage.desktopImage.fixed,
       media: `(min-width: 768px)`,
+      aspectRatio: 1,
     },
   ];
   return (
@@ -232,18 +233,6 @@ const Search = props => {
 
         <section className="container-results">
           <header className="container-header container-options">
-            {/* <SortBy
-              className="container-option"
-              defaultRefinement="howtoArticle"
-              items={[
-                { value: 'platformLiberty', label: 'Published Date Dsc' },
-                {
-                  value: 'howtoArticle',
-                  label: 'Published Date Asc',
-                },
-              ]}
-            /> */}
-
             <HitsPerPage
               className="container-option"
               items={[

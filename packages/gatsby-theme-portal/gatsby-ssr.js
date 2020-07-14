@@ -1,5 +1,5 @@
 const React = require('react');
-
+const { MyProvider } = require('./src/context/Context');
 const headComponents = [];
 
 headComponents.push(
@@ -9,11 +9,11 @@ headComponents.push(
     type="text/javascript"
     dangerouslySetInnerHTML={{
       __html: `
-            (function(a, h){
-              var botsRegexp = /aolbuild|baidu|bingbot|bingpreview|msnbot|duckduckgo|adsbot-google|googlebot|mediapartners-google|teoma|slurp|yandex/gi;
-              window.searchAgentOnPage = h && h==='#noquiz' || botsRegexp.test(a);
-            })(navigator.userAgent, location.hash);
-            `,
+(function(a, h){
+var botsRegexp = /aolbuild|baidu|bingbot|bingpreview|msnbot|duckduckgo|adsbot-google|googlebot|mediapartners-google|teoma|slurp|yandex/gi;
+window.searchAgentOnPage = h && h==='#noquiz' || botsRegexp.test(a);
+})(navigator.userAgent, location.hash);
+`,
     }}
     id="botDetector"
   />,
@@ -28,3 +28,5 @@ headComponents.push(
 exports.onRenderBody = ({ setHeadComponents }, pluginOptions) => {
   setHeadComponents(headComponents);
 };
+
+exports.wrapRootElement = ({ element }) => <MyProvider>{element}</MyProvider>;

@@ -9,7 +9,10 @@ import { ReactComponent as Share } from '../../images/icons/facebook.svg';
 
 import useStyles from './styles';
 
-const SocialMenu: FunctionComponent<SocialMenuInterface> = ({ links }) => {
+const SocialMenu: FunctionComponent<SocialMenuInterface> = ({
+  links,
+  popupSocial,
+}) => {
   const classes = useStyles();
   const socialIcons: { [char: string]: any } = {
     facebook: Facebook,
@@ -36,7 +39,13 @@ const SocialMenu: FunctionComponent<SocialMenuInterface> = ({ links }) => {
   if (!links) return null;
 
   return (
-    <div className={`c-social ${classes.social}`}>
+    <div
+      className={
+        popupSocial === 'true'
+          ? `c-social  ${classes.popupSocial}`
+          : `c-social  ${classes.social}`
+      }
+    >
       <ul>{renderItems()}</ul>
     </div>
   );
@@ -44,6 +53,7 @@ const SocialMenu: FunctionComponent<SocialMenuInterface> = ({ links }) => {
 
 interface SocialMenuInterface {
   links: any;
+  popupSocial: any;
 }
 
 export default SocialMenu;

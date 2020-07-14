@@ -12,9 +12,12 @@ export const MyProvider = props => {
       //do not view Popup
     } else {
       //this is the first time
-
-      window.localStorage['alreadyVisited'] = true;
-      setOpen(true);
+      const timer = setTimeout(() => {
+        typeof window !== 'undefined' &&
+          window.localStorage.setItem('alreadyVisited', true);
+        setOpen(true);
+      }, 8000);
+      return () => clearTimeout(timer);
     }
   }, []);
 
