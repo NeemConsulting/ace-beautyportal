@@ -28,7 +28,6 @@ const LandingSectionRenderer: FunctionComponent<LandingSectionRendererInterface>
   const sanityType = section.__typename;
   const getComponent = sanityType => {
     const component = componentsMap[sanityType];
-
     if (component) {
       return component;
     } else {
