@@ -1,4 +1,4 @@
-import {FaSlidersH} from 'react-icons/fa'
+import { FaSlidersH } from 'react-icons/fa'
 
 export default {
   name: 'articleSlider',
@@ -36,7 +36,7 @@ export default {
       of: [
         {
           type: 'reference',
-          to: [{type: 'howToArticle'}, {type: 'featureArticle'}, {type: 'galleryArticle'}]
+          to: [{ type: 'howToArticle' }, { type: 'featureArticle' }, { type: 'galleryArticle' }]
         }
       ]
     },

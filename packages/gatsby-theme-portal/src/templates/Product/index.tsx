@@ -153,13 +153,13 @@ const ProductPage = (props: ProductPageProps) => {
             />
           )}
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Container>
             {page.tags.length && (
               <Tags title="Find something else" data={page.tags} />
             )}
           </Container>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Layout>
   );

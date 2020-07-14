@@ -7,10 +7,13 @@ import theme from '../theme';
 import Header from '../Header';
 import Footer from '../Footer';
 import PageSchema from '../PageSchema';
+import SubscriptionPopup from '../SubscriptionPopup';
+import { MyContext } from '../../context/Context';
 
 import useStyles from './styles';
 
 const Layout = ({ className, children }: LayoutProps) => {
+  const [open, setOpen] = React.useContext(MyContext);
   const classes = useStyles();
   return (
     <React.Fragment>
@@ -20,7 +23,7 @@ const Layout = ({ className, children }: LayoutProps) => {
           <span>Skip to content</span>
         </a>
         <Header />
-
+        <SubscriptionPopup open={open} setOpen={setOpen} />
         <PageSchema type={'WebSite'} />
         <main
           id="main"

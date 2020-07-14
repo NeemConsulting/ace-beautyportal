@@ -18,7 +18,7 @@ const howToArticleQuery = `{
         slug: slug{current}
         title:headline
         subtitle:subheading
-        heroImage{
+        image: heroImage{
           desktopImage: asset {
             url
             fixed(width: 240, height: 240) {
@@ -75,7 +75,7 @@ const galleryArticleQuery = `{
         pageType:_type
         title:headline
         subtitle:subheading
-        heroImage{
+        image: heroImage{
           desktopImage: asset {
             url
             fixed(width: 240, height: 240) {
@@ -127,7 +127,7 @@ const featureArticleQuery = `{
         pageType:_type
         title:headline
         subtitle:subheading
-        heroImage{
+        image: heroImage{
           desktopImage: asset {
             url
             fixed(width: 240, height: 240) {
@@ -181,7 +181,7 @@ const productQuery = `{
         pageType:_type
         title:name
         subtitle:tagLine
-        image{
+        image: image{
           desktopImage: asset {
             url
             fixed(width: 240, height: 240) {

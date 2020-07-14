@@ -34,11 +34,11 @@ const searchClient = algoliasearch(
 );
 
 const Hit = ({ hit }) => {
-  const { path, title, heroImage } = hit;
+  const { path, title, image } = hit;
   const sources = [
-    heroImage.mobileImage.fixed,
+    image.mobileImage.fixed,
     {
-      ...heroImage.desktopImage.fixed,
+      ...image.desktopImage.fixed,
       media: `(min-width: 768px)`,
     },
   ];
@@ -51,7 +51,7 @@ const Hit = ({ hit }) => {
       <article className="hit">
         <header className="hit-image-container">
           <figure>
-            <Img fixed={sources} alt={heroImage.alt} />
+            <Img fixed={sources} alt={image.alt} />
           </figure>
         </header>
 
@@ -74,6 +74,7 @@ const Hit = ({ hit }) => {
 };
 
 const Search = props => {
+  console.log('propsSearch', props);
   const containerRef = useRef(null);
   const [query, setQuery] = useState('');
   const headerRef = useRef(null);

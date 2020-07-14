@@ -32,6 +32,38 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         transition: 'all .3s',
       },
     },
+    popupSocial: {
+      alignSelf: 'center',
+      flex: '0 0 auto',
+      display: 'flex',
+      justifyContent: 'center',
+      marginBottom: '1rem !important',
+
+      '& ul': {
+        listStyleType: 'none',
+        display: 'flex',
+        margin: 0,
+        padding: 0,
+      },
+
+      '& li': {
+        marginRight: spacing(2.5),
+        '&:last-child': {
+          marginRight: 0,
+        },
+      },
+
+      '& a:hover svg': {
+        fill: palette.primary.main,
+      },
+
+      '& svg': {
+        width: 32,
+        height: 32,
+        fill: palette.common.black,
+        transition: 'all .3s',
+      },
+    },
     srOnly: {
       border: 0,
       clip: 'rect(0 0 0 0)',
