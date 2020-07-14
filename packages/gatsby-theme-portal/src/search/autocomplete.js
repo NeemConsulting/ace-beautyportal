@@ -43,13 +43,6 @@ class AutoComplete extends Component {
   renderSuggestion(hit) {
     return (
       <Link className={'ais-InfiniteHits-item__link'} to={`/${hit.path}`}>
-        {/* <div className="image-wrapper">
-          <img
-            className={'ais-InfiniteHits-item__image'}
-            src={`${hit.image.asset.url}?w=240&h=240&fit=crop&fm=webp`}
-            alt={hit.image.alt}
-          />
-        </div> */}
         <Highlight attribute="title" hit={hit} tagName="mark" />
       </Link>
     );
@@ -66,15 +59,18 @@ class AutoComplete extends Component {
     };
 
     return (
-      <AutoSuggest
-        suggestions={hits.slice(0, 4)}
-        onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-        onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-        onSuggestionSelected={onSuggestionSelected}
-        getSuggestionValue={this.getSuggestionValue}
-        renderSuggestion={this.renderSuggestion}
-        inputProps={inputProps}
-      />
+      <>
+        <label htmlFor={inputProps.id}></label>
+        <AutoSuggest
+          suggestions={hits.slice(0, 4)}
+          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+          onSuggestionSelected={onSuggestionSelected}
+          getSuggestionValue={this.getSuggestionValue}
+          renderSuggestion={this.renderSuggestion}
+          inputProps={inputProps}
+        />
+      </>
     );
   }
 }
