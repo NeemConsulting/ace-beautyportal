@@ -5,6 +5,7 @@ import classNames from 'classnames';
 
 import { Typography } from '@material-ui/core';
 import { HeroSliderInterface } from './models';
+import { ReactComponent as PlayVideo } from '../../images/icons/play.svg';
 import Swiper from 'react-id-swiper';
 import 'swiper/css/swiper.min.css';
 import useStyles from './styles';
@@ -64,7 +65,7 @@ const HeroSlider: FunctionComponent<HeroSliderInterface> = ({
       </button>
       <Swiper {...params} getSwiper={updateSwiper}>
         {slides.map((slide: any, index: number) => (
-          <div key={slide.path}>
+          <Link className={classes.sliderLink} to={slide.path}>
             {slide.heroImage &&
               (index ? (
                 <Img
@@ -93,18 +94,27 @@ const HeroSlider: FunctionComponent<HeroSliderInterface> = ({
                   </picture>
                 </figure>
               ))}
+            {slide.heroVideo && (
+              <span className={`icon ${classes.iconPlay}`}>
+                <PlayVideo />
+                <span hidden>Play Video</span>
+              </span>
+            )}
             <div className={classes.copy}>
               <div className={classes.copyInner}>
                 <div className={classes.slideType}>{slide._type}</div>
                 <Typography variant="h2" className={classes.heading}>
-                  {slide.headline}
+                  <span>{slide.headline}</span>
                 </Typography>
-                <Link className={classes.callToAction} to={slide.path}>
+                <Link
+                  className={`button ${classes.callToAction}`}
+                  to={slide.path}
+                >
                   Go to Article
                 </Link>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </Swiper>
       <button
