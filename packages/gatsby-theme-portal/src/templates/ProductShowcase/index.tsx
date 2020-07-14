@@ -13,7 +13,6 @@ import Container from '@material-ui/core/Container';
 const searchIndices = [{ name: `products`, title: `products`, hitComp: `Hit` }];
 
 const ProductShowcase = (props: ProductShowcaseProps) => {
-  console.log('ProductShowcase', ProductShowcase);
   const howtoShampooArticles = props.data.howtoShampooArticles.nodes;
   const galleryShampooArticles = props.data.galleryShampooArticles.nodes;
   const featureShampooArticles = props.data.featureShampooArticles.nodes;
@@ -45,7 +44,6 @@ const ProductShowcase = (props: ProductShowcaseProps) => {
       tags: { nodes: tagsList },
     },
   } = props;
-  console.log('seeAllHairSpray', seeAllHairSpray);
   return (
     <Layout>
       <SEO lang={'tl-ph'} title="" description="" keywords="" />

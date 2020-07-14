@@ -14,7 +14,6 @@ const SanityVideoBlock: FunctionComponent<SanityVideoBlockInterface> = ({
   _rawTextBlockBody,
 }) => {
   const classes = useStyles();
-
   return (
     <section className={classes.section}>
       <Container>
@@ -31,7 +30,7 @@ const SanityVideoBlock: FunctionComponent<SanityVideoBlockInterface> = ({
           ></iframe>
           <div className={classes.copyText}>
             <Typography variant="h2" className={classes.sectionTitle}>
-              {videoBlockName}
+              {videoBlock.youTubeCaption}
             </Typography>
             {_rawTextBlockBody && (
               <BlockContent
