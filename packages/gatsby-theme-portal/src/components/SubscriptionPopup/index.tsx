@@ -10,7 +10,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import Typography from '@material-ui/core/Typography';
 import { TransitionProps } from '@material-ui/core/transitions';
@@ -21,14 +20,12 @@ import useStyles from './styles';
 
 const styles = theme => ({
   root: {
-    fontSize: '2rem',
     padding: '0px 24px',
   },
   closeButton: {
     position: 'absolute',
     right: 0,
     top: 0,
-    color: 'white',
   },
 });
 
@@ -50,7 +47,18 @@ const DialogTitle = withStyles(styles)(props => {
           className={classes.closeButton}
           onClick={onClose}
         >
-          <CloseIcon />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="white"
+              stroke-width="2"
+              d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+            />
+          </svg>
         </IconButton>
       ) : null}
     </MuiDialogTitle>
