@@ -13,7 +13,6 @@ import {
   InfiniteHits,
 } from 'react-instantsearch-dom';
 import algoliasearch from 'algoliasearch/lite';
-import Img from 'gatsby-image';
 import Autocomplete from './autocomplete';
 import {
   ClearFiltersMobile,
@@ -25,7 +24,6 @@ import withURLSync from './URLSync';
 import './theme.css';
 import './search.css';
 import './search.mobile.css';
-import './widgets/Pagination.css';
 
 const searchClient = algoliasearch(
   process.env['app_local_algolia_app_id'] || 'XBFIS787BV',
@@ -35,13 +33,7 @@ const searchClient = algoliasearch(
 
 const Hit = ({ hit }) => {
   const { path, title, image } = hit;
-  const sources = [
-    image.mobileImage.fixed,
-    {
-      ...image.desktopImage.fixed,
-      media: `(min-width: 768px)`,
-    },
-  ];
+
   return (
     <Link
       className={'ais-InfiniteHits-item__link'}
@@ -50,9 +42,17 @@ const Hit = ({ hit }) => {
     >
       <article className="hit">
         <header className="hit-image-container">
-          <figure>
-            <Img fixed={sources} alt={image.alt} />
-          </figure>
+          <picture>
+            <source
+              media="(max-width: 799px)"
+              srcset={image.mobileImage.fixed.srcWebp}
+            />
+            <source
+              media="(min-width: 800px)"
+              srcset={image.desktopImage.fixed.srcWebp}
+            />
+            <img src={image.desktopImage.fixed.src} alt={image.alt} />
+          </picture>
         </header>
 
         <div className="hit-info-container">

@@ -100,7 +100,7 @@ const SubscriptionPopup: FunctionComponent<SubscriptionPopupInterface> = ({
           style={{ border: '1.25rem solid #2c5270', borderTopWidth: '3rem' }}
         >
           <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            <h2>{data.subscriptionInfo.headline}</h2>
+            <h2 className={classes.Title}>{data.subscriptionInfo.headline}</h2>
           </DialogTitle>
           <DialogContent>
             <DialogContentText
