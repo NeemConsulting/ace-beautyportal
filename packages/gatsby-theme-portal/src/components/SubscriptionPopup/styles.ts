@@ -1,6 +1,6 @@
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-export default makeStyles(({ palette }: Theme) =>
+export default makeStyles(({ breakpoints, palette }: Theme) =>
   createStyles({
     PrimaryButton: {
       fontSize: '1.125rem',
@@ -56,7 +56,18 @@ export default makeStyles(({ palette }: Theme) =>
       marginBottom: '.5rem !important',
     },
     Description: {
-      marginTop: -30,
+      [breakpoints.up('md')]: {
+        fontSize: '1.25rem',
+        marginTop: -30,
+      },
+      fontSize: '1rem',
+      marginTop: -15,
+    },
+    Title: {
+      [breakpoints.up('md')]: {
+        fontSize: '2.2rem',
+      },
+      fontSize: '1.4rem',
     },
   })
 );
