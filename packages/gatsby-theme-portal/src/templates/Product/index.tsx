@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,43 +12,13 @@ import BlockContent from '@sanity/block-content-to-react';
 import { blockTypeDefaultSerializers } from '../../helpers/sanity';
 import Tags from '../../components/Tags';
 import SanityArticleSlider from '../../components/SanityArticleSlider';
+import { ReactComponent as ArrowUp } from '../../images/icons/up.svg';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import SEO from '../../components/Seo';
 import Layout from '../../components/Layout';
-
-const useStyles = makeStyles(theme => ({
-  mainGrid: {
-    marginTop: theme.spacing(10),
-  },
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(1.25),
-    margin: theme.spacing(1.25),
-    textAlign: 'left',
-    color: theme.palette.text.secondary,
-  },
-  carouselArrow: {
-    position: 'absolute',
-    zIndex: 2,
-    top: 'calc(50% - 50px)',
-    width: 77,
-    height: 77,
-    cursor: 'pointer',
-    backgroundColor: 'transparent',
-    border: 'none',
-  },
-  socialWrapper: {
-    '& svg': {
-      fill: 'black',
-    },
-  },
-  marginLeft: {
-    marginLeft: theme.spacing(1),
-  },
-}));
+import { Typography } from '@material-ui/core';
+import useStyles from './styles';
 
 const ProductPage = (props: ProductPageProps) => {
   const {
@@ -60,6 +30,8 @@ const ProductPage = (props: ProductPageProps) => {
       imageBlock,
     },
   } = props;
+
+  const [accordion, toggleAccordion] = useState(false);
 
   const classes = useStyles();
 
@@ -77,42 +49,88 @@ const ProductPage = (props: ProductPageProps) => {
       <Grid container>
         <Grid item xs={12}>
           <Container>
-            <Grid container>
-              <Grid item lg={5} md={5} xs={12}>
+            <Grid container spacing={4}>
+              <Grid
+                item
+                lg={6}
+                md={6}
+                xs={12}
+                spacing={4}
+                className={classes.productImage}
+              >
                 <Img fluid={page.image.asset.fluid} alt={page.image.alt} />
+                <span className={classes.readNextTitle}>
+                  {page.tags[0].name}
+                </span>
               </Grid>
-              <Grid item lg={7} md={7} xs={12}>
-                <h1>{page.name}</h1>
+              <Grid item lg={6} md={6} xs={12}>
+                <Typography variant="h1">{page.name}</Typography>
                 {page.buyNow && (
-                  <PrimaryButton lable="Buy Now" link={page.buyNow} />
+                  <PrimaryButton
+                    className={classes.marginRight}
+                    lable="Buy Now"
+                    link={page.buyNow}
+                  />
                 )}
                 {page.learnMore && (
                   <SecondaryButton
-                    className={classes.marginLeft}
                     lable="See the benefits"
                     link={page.learnMore}
                   />
                 )}
-                <Grid container spacing={2}>
-                  <Grid
-                    item
-                    lg={6}
-                    md={6}
-                    xs={12}
-                    className={classes.socialWrapper}
-                  >
+                <Grid container spacing={2} className={classes.socialWrapper}>
+                  <Grid item lg={6} md={6} xs={12}>
                     <BlockContent
                       blocks={page._rawMarketingDescription}
                       serializers={blockTypeDefaultSerializers}
                     />
-                    <SocialMenu links={brandInfo} />
+                    {page.tags.length > 0 && (
+                      <>
+                        <Typography
+                          variant="subtitle1"
+                          className={classes.strong}
+                        >
+                          Best for:
+                        </Typography>
+                        <Typography variant="body1">
+                          {page.tags.map(tag => (
+                            <span className={classes.marginRight}>
+                              {tag.name}
+                            </span>
+                          ))}
+                        </Typography>
+                      </>
+                    )}
                   </Grid>
                   <Grid item lg={6} md={6} xs={12}>
+                    {console.log(page._rawUsageDetails)}
                     <BlockContent
                       blocks={page._rawUsageDetails}
                       serializers={blockTypeDefaultSerializers}
                     />
+                    <SocialMenu links={brandInfo} popupSocial="" />
                   </Grid>
+                  {page._rawIngredients && (
+                    <div className={classes.accordion}>
+                      <div
+                        className="header"
+                        onClick={() => toggleAccordion(!accordion)}
+                      >
+                        <span>What it's made of</span>
+                        <ArrowUp className={accordion ? 'up' : 'down'} />
+                      </div>
+                      <div
+                        className={
+                          accordion ? 'contentExpand' : `contentCollapse`
+                        }
+                      >
+                        <BlockContent
+                          blocks={page._rawIngredients}
+                          serializers={blockTypeDefaultSerializers}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </Grid>
               </Grid>
             </Grid>
@@ -153,13 +171,13 @@ const ProductPage = (props: ProductPageProps) => {
             />
           )}
         </Grid>
-        {/* <Grid item xs={12}>
+        <Grid item xs={12}>
           <Container>
             {page.tags.length && (
               <Tags title="Find something else" data={page.tags} />
             )}
           </Container>
-        </Grid> */}
+        </Grid>
       </Grid>
     </Layout>
   );
