@@ -21,7 +21,6 @@ const TileSlider: FunctionComponent<TileSliderInterface> = ({
   description,
   author,
 }) => {
-  console.log('description', description);
   const [swiper, updateSwiper] = useState(null);
   const [isLastSlide, setIsLastSlide] = useState(false);
   const [isFirstSlide, setIsFirstSlide] = useState(true);

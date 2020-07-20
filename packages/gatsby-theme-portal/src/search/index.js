@@ -74,7 +74,6 @@ const Hit = ({ hit }) => {
 };
 
 const Search = props => {
-  console.log('propsSearch', props);
   const containerRef = useRef(null);
   const [query, setQuery] = useState('');
   const headerRef = useRef(null);
