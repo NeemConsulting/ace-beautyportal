@@ -59,9 +59,11 @@ const ProductPage = (props: ProductPageProps) => {
                 className={classes.productImage}
               >
                 <Img fluid={page.image.asset.fluid} alt={page.image.alt} />
-                <span className={classes.readNextTitle}>
-                  {page.tags[0].name}
-                </span>
+                {page.tags.length > 0 && (
+                  <span className={classes.readNextTitle}>
+                    {page.tags[0].name}
+                  </span>
+                )}
               </Grid>
               <Grid item lg={6} md={6} xs={12}>
                 <Typography variant="h1">{page.name}</Typography>
