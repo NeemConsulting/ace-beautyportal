@@ -207,7 +207,7 @@ export const query = graphql`
         }
       }
       ... on SanityAuthorSlider {
-        _id
+        id
         name
         headline
         description

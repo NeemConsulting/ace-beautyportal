@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { graphql } from 'gatsby';
 import Layout from '../../components/Layout';
 import OGTags from '../../components/OGTags';
 import Breadcrumb from '../../components/Breadcrumb';
@@ -18,18 +17,10 @@ const searchIndices = [
 const AuthorPage = (props: AuthorPageProps) => {
   const { data } = props;
   const { name, slug, _rawBio, image } = data.page.nodes[0];
-  const howtoAuthorArticles = props.data.howtoAuthorArticles.edges;
-  const galleryAuthorArticles = props.data.galleryAuthorArticles.edges;
-  const featureAuthorArticles = props.data.featureAuthorArticles.edges;
-  const allAuthorArticles = [
-    ...howtoAuthorArticles,
-    ...galleryAuthorArticles,
-    ...featureAuthorArticles,
-  ];
-  console.log('allAuthorArticles', allAuthorArticles);
+
   return (
     <Layout>
-      <SEO lang={'tl-ph'} title={name} description={name} keywords={name} />
+      <SEO lang={'tl-ph'} title={name} description={name} keywords={[' ']} />
       <OGTags type={'page'} slug={slug} data={data.page} />
       {slug !== '/' && <Breadcrumb pageTitle={name} />}
       <Grid container>
@@ -68,38 +59,6 @@ const AuthorPage = (props: AuthorPageProps) => {
               indices={searchIndices}
               slug={slug.current}
             />
-            {/* <ul className="author-article-list">
-              {allAuthorArticles.map(edge => (
-                <>
-                  <Link
-                    className="author-article-container"
-                    to={`/${edge.node.path}/`}
-                    aria-label={edge.node.headline}
-                  >
-                    <div className="author-article-container-card">
-                      <span className="author-article-badge">
-                        {edge.node._type}
-                      </span>
-                      <div className="author-article-container-card_image">
-                        <Img
-                          fluid={{
-                            ...edge.node.heroImage.asset.fluid,
-                            sizes:
-                              '(max-width: 512px) 10vw, (max-width: 768px) 20vw, (max-width: 1268px) 30vw, (max-width: 1680px) 40vw, 50vw',
-                          }}
-                          alt={edge.node.heroImage.alt}
-                        />
-                      </div>
-                      <div className="author-article-container-card_content">
-                        <h2 className="author-article-container-card_title">
-                          {edge.node.headline}
-                        </h2>
-                      </div>
-                    </div>
-                  </Link>
-                </>
-              ))}
-            </ul> */}
           </Container>
         </Grid>
       </Grid>
@@ -134,34 +93,6 @@ export const query = graphql`
           current
         }
         _rawBio(resolveReferences: { maxDepth: 10 })
-      }
-    }
-    howtoAuthorArticles: allSanityHowToArticle(
-      filter: { author: { slug: { current: { eq: $slug } } } }
-    ) {
-      edges {
-        node {
-          ...HowToFieldsTile
-        }
-      }
-    }
-
-    galleryAuthorArticles: allSanityGalleryArticle(
-      filter: { author: { slug: { current: { eq: $slug } } } }
-    ) {
-      edges {
-        node {
-          ...GalleryFieldsTile
-        }
-      }
-    }
-    featureAuthorArticles: allSanityFeatureArticle(
-      filter: { author: { slug: { current: { eq: $slug } } } }
-    ) {
-      edges {
-        node {
-          ...FeatureFieldsTile
-        }
       }
     }
   }
