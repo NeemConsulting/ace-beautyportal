@@ -206,6 +206,40 @@ export const query = graphql`
           name
         }
       }
+      ... on SanityAuthorSlider {
+        _id
+        name
+        headline
+        description
+        slides {
+          _type
+          name
+          _rawBio(resolveReferences: { maxDepth: 10 })
+          image {
+            asset {
+              fluid {
+                aspectRatio
+                base64
+                sizes
+                src
+                srcSet
+                srcSetWebp
+                srcWebp
+              }
+            }
+            alt
+          }
+          slug {
+            current
+          }
+        }
+        searchCtaLabel
+        searchTags {
+          tagCategory {
+            name
+          }
+        }
+      }
       ... on SanityTextBlock {
         id
         name

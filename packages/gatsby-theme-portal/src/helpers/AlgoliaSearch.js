@@ -225,6 +225,7 @@ const productQuery = `{
 const settings = {
   attributesForFaceting: [
     `pageType`,
+    `author.name`,
     `tag`,
     `category`,
     `difficulty`,

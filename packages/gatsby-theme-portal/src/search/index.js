@@ -128,7 +128,7 @@ const Search = props => {
       onSearchStateChange={props.onSearchStateChange}
       root={{ props: { ref } }}
     >
-      {props.filterProducts !== 'true' && (
+      {props.authors !== 'true' && props.filterProducts !== 'true' && (
         <header className="search-header" ref={headerRef}>
           <p className="search-header-title">
             Stop looking for an item — find it.
@@ -142,94 +142,112 @@ const Search = props => {
         </header>
       )}
 
-      <Configure snippetEllipsisText="…" removeWordsIfNoResults="allOptional" />
+      {props.authors === 'true' ? (
+        <Configure facetFilters={[`author.name: ${props.slug}`]} />
+      ) : (
+        <Configure
+          snippetEllipsisText="…"
+          removeWordsIfNoResults="allOptional"
+        />
+      )}
 
       <div className="show-results">
         <ResultsNumberMobile />
       </div>
 
       <main className="search-container" ref={containerRef}>
-        <div className="container-wrapper">
-          <section className="container-filters" onKeyUp={onKeyUp}>
-            <div className="container-header">
-              <h2>Filters</h2>
+        {props.authors === 'true' ? (
+          <></>
+        ) : (
+          <div className="container-wrapper">
+            <section className="container-filters" onKeyUp={onKeyUp}>
+              <div className="container-header">
+                <h2>Filters</h2>
 
-              <div className="clear-filters" data-layout="desktop">
-                <ClearRefinements
-                  translations={{
-                    reset: (
-                      <>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="11"
-                          height="11"
-                          viewBox="0 0 11 11"
-                        >
-                          <g fill="none" fillRule="evenodd" opacity=".4">
-                            <path d="M0 0h11v11H0z" />
-                            <path
-                              fill="#000"
-                              fillRule="nonzero"
-                              d="M8.26 2.75a3.896 3.896 0 1 0 1.102 3.262l.007-.056a.49.49 0 0 1 .485-.456c.253 0 .451.206.437.457 0 0 .012-.109-.006.061a4.813 4.813 0 1 1-1.348-3.887v-.987a.458.458 0 1 1 .917.002v2.062a.459.459 0 0 1-.459.459H7.334a.458.458 0 1 1-.002-.917h.928z"
-                            />
-                          </g>
-                        </svg>
-                        Clear filters
-                      </>
-                    ),
-                  }}
-                />
+                <div className="clear-filters" data-layout="desktop">
+                  <ClearRefinements
+                    translations={{
+                      reset: (
+                        <>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="11"
+                            height="11"
+                            viewBox="0 0 11 11"
+                          >
+                            <g fill="none" fillRule="evenodd" opacity=".4">
+                              <path d="M0 0h11v11H0z" />
+                              <path
+                                fill="#000"
+                                fillRule="nonzero"
+                                d="M8.26 2.75a3.896 3.896 0 1 0 1.102 3.262l.007-.056a.49.49 0 0 1 .485-.456c.253 0 .451.206.437.457 0 0 .012-.109-.006.061a4.813 4.813 0 1 1-1.348-3.887v-.987a.458.458 0 1 1 .917.002v2.062a.459.459 0 0 1-.459.459H7.334a.458.458 0 1 1-.002-.917h.928z"
+                              />
+                            </g>
+                          </svg>
+                          Clear filters
+                        </>
+                      ),
+                    }}
+                  />
+                </div>
+
+                <div className="clear-filters" data-layout="mobile">
+                  <ResultsNumberMobile />
+                </div>
               </div>
 
-              <div className="clear-filters" data-layout="mobile">
-                <ResultsNumberMobile />
+              <div className="container-body">
+                {props.filterProducts === 'true' ? (
+                  <>
+                    <Panel header="Category">
+                      <RefinementList
+                        attribute="tag"
+                        limit={6}
+                        showMore={true}
+                      />
+                    </Panel>
+                    <Panel header="All brands">
+                      <RefinementList attribute="brand" />
+                    </Panel>
+                  </>
+                ) : (
+                  <>
+                    <Panel header="Tag">
+                      <RefinementList
+                        attribute="tag"
+                        limit={6}
+                        showMore={true}
+                      />
+                    </Panel>
+                    <Panel header="Category">
+                      <RefinementList
+                        attribute="category"
+                        limit={6}
+                        showMore={true}
+                      />
+                    </Panel>
+                    <Panel header="Tags">
+                      <RefinementList attribute="pageType" />
+                    </Panel>
+                    <Panel header="Duration">
+                      <RefinementList attribute="duration" />
+                    </Panel>
+                  </>
+                )}
               </div>
-            </div>
+            </section>
 
-            <div className="container-body">
-              {props.filterProducts === 'true' ? (
-                <>
-                  <Panel header="Category">
-                    <RefinementList attribute="tag" limit={6} showMore={true} />
-                  </Panel>
-                  <Panel header="All brands">
-                    <RefinementList attribute="brand" />
-                  </Panel>
-                </>
-              ) : (
-                <>
-                  <Panel header="Tag">
-                    <RefinementList attribute="tag" limit={6} showMore={true} />
-                  </Panel>
-                  <Panel header="Category">
-                    <RefinementList
-                      attribute="category"
-                      limit={6}
-                      showMore={true}
-                    />
-                  </Panel>
-                  <Panel header="Tags">
-                    <RefinementList attribute="pageType" />
-                  </Panel>
-                  <Panel header="Duration">
-                    <RefinementList attribute="duration" />
-                  </Panel>
-                </>
-              )}
-            </div>
-          </section>
+            <footer className="container-filters-footer" data-layout="mobile">
+              <div className="container-filters-footer-button-wrapper">
+                <ClearFiltersMobile containerRef={containerRef} />
+              </div>
 
-          <footer className="container-filters-footer" data-layout="mobile">
-            <div className="container-filters-footer-button-wrapper">
-              <ClearFiltersMobile containerRef={containerRef} />
-            </div>
-
-            <div className="container-filters-footer-button-wrapper">
-              <SaveFiltersMobile onClick={closeFilters} />
-            </div>
-          </footer>
-        </div>
-
+              <div className="container-filters-footer-button-wrapper">
+                <SaveFiltersMobile onClick={closeFilters} />
+              </div>
+            </footer>
+          </div>
+        )}
         <section className="container-results">
           <header className="container-header container-options">
             <HitsPerPage
@@ -262,7 +280,9 @@ const Search = props => {
         </section>
       </main>
 
-      {
+      {props.authors === 'true' ? (
+        <></>
+      ) : (
         <aside data-layout="mobile">
           <button
             className="filters-button"
@@ -283,7 +303,7 @@ const Search = props => {
             Filters
           </button>
         </aside>
-      }
+      )}
     </InstantSearch>
   );
 };

@@ -4,4 +4,6 @@ export interface TileSliderInterface {
   headline: string | null;
   searchCtaLabel: string;
   searchTags: any;
+  description: string;
+  author: any;
 }

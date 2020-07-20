@@ -11,8 +11,8 @@ import {
   MdViewCompact,
   MdEmail
 } from 'react-icons/md'
-import {FaSitemap, FaTag, FaTags, FaBuffer, FaSlidersH, FaBoxes, FaGlobe} from 'react-icons/fa'
-import {GiSpray, GiCherish, GiHairStrands, GiStopSign} from 'react-icons/gi'
+import { FaSitemap, FaTag, FaTags, FaBuffer, FaSlidersH, FaBoxes, FaGlobe } from 'react-icons/fa'
+import { GiSpray, GiCherish, GiHairStrands, GiStopSign } from 'react-icons/gi'
 // ran npm install react
 // ran npm install font-awesome
 
@@ -32,14 +32,14 @@ export const getDefaultDocumentNode = props => {
    * you can set up that logic in here too.
    * https://www.sanity.io/docs/structure-builder-reference#getdefaultdocumentnode-97e44ce262c9
    */
-  const {schemaType} = props
+  const { schemaType } = props
   if (schemaType === 'post') {
     return S.document().views([
       S.view.form(),
       S.view
         .component(IframePreview)
         .title('Web preview')
-        .options({previewURL})
+        .options({ previewURL })
     ])
   }
   return S.document().views([S.view.form()])
@@ -107,6 +107,11 @@ export default () =>
                 .icon(FaSlidersH)
                 .schemaType('productSlider')
                 .child(S.documentTypeList('productSlider').title('Slider for products')),
+              S.listItem()
+                .title('Slider - Authors')
+                .icon(FaSlidersH)
+                .schemaType('authorSlider')
+                .child(S.documentTypeList('authorSlider').title('Slider for authors')),
               S.divider(),
               S.listItem()
                 .title('Text Block')
@@ -320,6 +325,7 @@ export default () =>
             'product',
             'sliderType',
             'articleSlider',
+            'authorSlider',
             'productSlider',
             'tool',
             'navigation',

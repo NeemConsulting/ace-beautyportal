@@ -178,6 +178,10 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
       },
     },
     sliderTitle: {},
+    sliderDescription: {
+      marginBottom: '3%',
+      fontSize: '1.3rem',
+    },
     sliderItemCaption: {
       fontSize: '.875rem',
       fontWeight: 600,

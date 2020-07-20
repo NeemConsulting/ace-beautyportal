@@ -1,0 +1,150 @@
+.author-article-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.author-article-badge {
+  color: #2c5270;
+  z-index: 1;
+  position: absolute;
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 1.1;
+  padding-top: 3px;
+  padding-right: 5px;
+  letter-spacing: 1px;
+  padding-bottom: 3px;
+  text-transform: uppercase;
+  background-color: #fff;
+}
+
+.author-article-container {
+  display: flex;
+  padding: 1rem;
+  text-decoration: none;
+}
+
+@media (min-width: 40rem) {
+  .author-article-container {
+    width: 50%;
+  }
+  .author-article-badge {
+    padding-left: 40px;
+  }
+}
+
+@media (min-width: 56rem) {
+  .author-article-container {
+    width: 33.3333%;
+  }
+  .author-article-badge {
+    padding-left: 0px;
+  }
+}
+
+@media (min-width: 80rem) {
+  .author-article-container {
+    width: 24.3333%;
+  }
+  .author-article-badge {
+    padding-left: 0px;
+  }
+}
+
+.author-article-container-card {
+  background-color: white;
+  border-radius: 0.25rem;
+  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.author-article-container-card_image {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.author-article-container-card_content {
+  padding: 1rem;
+  /* background: linear-gradient(to bottom left, #ef8d9c 40%, #ffc39e 100%); */
+}
+
+.author-article-container-card_title {
+  color: #21243d;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 0px;
+}
+
+.author-article-container-card_text {
+  color: #21243d;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+
+._editor-header .wrap {
+  text-align: center;
+}
+@media (min-width: 768px) {
+  ._editor-header .wrap {
+    width: 752px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .h1 {
+    font-size: 2.875rem;
+  }
+  .h3 {
+    font-size: 1.875rem;
+  }
+  .mb-md-8,
+  .my-md-8 {
+    margin-bottom: 2rem !important;
+  }
+  .mb-md-5,
+  .my-md-5 {
+    margin-bottom: 1rem !important;
+  }
+  .mt-md-4,
+  .my-md-4 {
+    margin-top: 0.675rem !important;
+  }
+  .mt-3,
+  .my-3 {
+    margin-top: 0.5rem !important;
+  }
+}
+.mb-8,
+.my-8 {
+  margin-bottom: 2rem !important;
+}
+
+._editor-header .img-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center right;
+}
+._editor-header .img-wrapper img {
+  border-radius: 50%;
+}
+.d-inline-block {
+  display: inline-block !important;
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}
