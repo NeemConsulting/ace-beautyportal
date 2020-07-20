@@ -11,8 +11,8 @@ import {
   MdViewCompact,
   MdEmail
 } from 'react-icons/md'
-import {FaSitemap, FaTag, FaTags, FaBuffer, FaSlidersH, FaBoxes, FaGlobe} from 'react-icons/fa'
-import {GiSpray, GiCherish, GiHairStrands, GiStopSign} from 'react-icons/gi'
+import { FaSitemap, FaTag, FaTags, FaBuffer, FaSlidersH, FaBoxes, FaGlobe } from 'react-icons/fa'
+import { GiSpray, GiCherish, GiHairStrands, GiStopSign } from 'react-icons/gi'
 // ran npm install react
 // ran npm install font-awesome
 
@@ -32,14 +32,14 @@ export const getDefaultDocumentNode = props => {
    * you can set up that logic in here too.
    * https://www.sanity.io/docs/structure-builder-reference#getdefaultdocumentnode-97e44ce262c9
    */
-  const {schemaType} = props
+  const { schemaType } = props
   if (schemaType === 'post') {
     return S.document().views([
       S.view.form(),
       S.view
         .component(IframePreview)
         .title('Web preview')
-        .options({previewURL})
+        .options({ previewURL })
     ])
   }
   return S.document().views([S.view.form()])
@@ -136,7 +136,13 @@ export default () =>
                 .title('Newsletter Block')
                 .icon(MdEmail)
                 .schemaType('newsletterBlock')
-                .child(S.documentTypeList('newsletterBlock').title('Newsletter Block'))
+                .child(S.documentTypeList('newsletterBlock').title('Newsletter Block')),
+              S.divider(),
+              S.listItem()
+                .title('Accordion Block')
+                .icon(MdEmail)
+                .schemaType('accordionBlock')
+                .child(S.documentTypeList('accordionBlock').title('Accordion Block'))
             ])
         ),
       S.listItem()
@@ -341,7 +347,8 @@ export default () =>
             'videoBlockType',
             'newsletterBlock',
             'newsletterBlockType',
-            'beforeAfterImage'
+            'beforeAfterImage',
+            'accordionBlock'
           ].includes(listItem.getId())
       )
     ])
