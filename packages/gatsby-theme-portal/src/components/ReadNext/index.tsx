@@ -8,7 +8,7 @@ const ReadNext: FunctionComponent<ReadNextInterface> = ({ data, title }) => {
   const classes = useStyles();
   return (
     <section className={classes.readNext}>
-      {/* <h3 className={classes.readNextTitle}>pars</h3> */}
+      <h3 className={classes.readNextTitle}>{title}</h3>
       <div className={classes.readNextContent}>
         <Link className={classes.readNextLink} to={data.readnext.path}>
           <div className={classes.readNextImage}>
