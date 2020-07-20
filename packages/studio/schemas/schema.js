@@ -36,6 +36,7 @@ import sliderType from './documents/sliderType'
 import articleSlider from './documents/articleSlider'
 import authorSlider from './documents/authorSlider'
 import productSlider from './documents/productSlider'
+import accordionBlock from './documents/accordionBlock'
 import navBar from './documents/navBar'
 
 // Object types
@@ -99,6 +100,7 @@ export default createSchema({
     videoBlockType,
     newsletterBlock,
     newsletterBlockType,
+    accordionBlock,
     tag,
     textBlock,
     tool,

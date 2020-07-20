@@ -296,6 +296,11 @@ export const query = graphql`
           name
         }
       }
+      ... on SanityAccordionBlock {
+        id
+        name
+        _rawTextBlockBody
+      }
     }
   }
 `;

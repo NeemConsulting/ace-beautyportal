@@ -141,7 +141,13 @@ export default () =>
                 .title('Newsletter Block')
                 .icon(MdEmail)
                 .schemaType('newsletterBlock')
-                .child(S.documentTypeList('newsletterBlock').title('Newsletter Block'))
+                .child(S.documentTypeList('newsletterBlock').title('Newsletter Block')),
+              S.divider(),
+              S.listItem()
+                .title('Accordion Block')
+                .icon(MdEmail)
+                .schemaType('accordionBlock')
+                .child(S.documentTypeList('accordionBlock').title('Accordion Block'))
             ])
         ),
       S.listItem()
@@ -347,7 +353,8 @@ export default () =>
             'videoBlockType',
             'newsletterBlock',
             'newsletterBlockType',
-            'beforeAfterImage'
+            'beforeAfterImage',
+            'accordionBlock'
           ].includes(listItem.getId())
       )
     ])
