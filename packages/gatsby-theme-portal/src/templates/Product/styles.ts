@@ -23,6 +23,13 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
       overflow: 'hidden',
       backgroundColor: '#f4f4f4',
       '& .header': {
+        width: '100%',
+        border: 'none',
+        fontSize: 'inherit',
+        fontWeight: 'inherit',
+        cursor: 'pointer',
+        lineHeight: 'inherit',
+        backgroundColor: 'transparent',
         display: 'flex',
         justifyContent: 'space-between',
         '& .up': {

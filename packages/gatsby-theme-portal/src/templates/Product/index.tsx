@@ -103,7 +103,6 @@ const ProductPage = (props: ProductPageProps) => {
                     )}
                   </Grid>
                   <Grid item lg={6} md={6} xs={12}>
-                    {console.log(page._rawUsageDetails)}
                     <BlockContent
                       blocks={page._rawUsageDetails}
                       serializers={blockTypeDefaultSerializers}
@@ -112,13 +111,14 @@ const ProductPage = (props: ProductPageProps) => {
                   </Grid>
                   {page._rawIngredients && (
                     <div className={classes.accordion}>
-                      <div
+                      <button
+                        type="button"
                         className="header"
                         onClick={() => toggleAccordion(!accordion)}
                       >
                         <span>What it's made of</span>
                         <ArrowUp className={accordion ? 'up' : 'down'} />
-                      </div>
+                      </button>
                       <div
                         className={
                           accordion ? 'contentExpand' : `contentCollapse`
