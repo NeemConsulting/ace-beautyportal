@@ -13,7 +13,7 @@ const SearchResults: FunctionComponent = () => {
     <Layout>
       <SEO lang={'tl-ph'} title="" description="" keywords="" />
       <Breadcrumb pageTitle="Search Results" />
-      <Search collapse="true" indices={searchIndices} />
+      <Search indices={searchIndices} />
     </Layout>
   );
 };

@@ -9,6 +9,8 @@ import 'swiper/css/swiper.min.css';
 import { TileSliderInterface } from './models';
 import { ReactComponent as Next } from '../../images/icons/next.svg';
 import { getSearchUrlWithTagsAndCategory } from '../../helpers/searchUrl';
+import BlockContent from '@sanity/block-content-to-react';
+import { blockTypeDefaultSerializers } from '../../helpers/sanity';
 import useStyles from './styles';
 
 const TileSlider: FunctionComponent<TileSliderInterface> = ({
@@ -16,13 +18,16 @@ const TileSlider: FunctionComponent<TileSliderInterface> = ({
   headline,
   searchCtaLabel,
   searchTags,
+  description,
+  author,
 }) => {
+  console.log('description', description);
   const [swiper, updateSwiper] = useState(null);
   const [isLastSlide, setIsLastSlide] = useState(false);
   const [isFirstSlide, setIsFirstSlide] = useState(true);
   const classes = useStyles();
   const params = {
-    slidesPerView: 4,
+    slidesPerView: author === 'true' ? 3 : 4,
     spaceBetween: 30,
     freeMode: true,
     scrollbar: {
@@ -31,11 +36,11 @@ const TileSlider: FunctionComponent<TileSliderInterface> = ({
     },
     breakpoints: {
       768: {
-        slidesPerView: 4,
+        slidesPerView: author === 'true' ? 3 : 4,
         spaceBetween: 30,
       },
       320: {
-        slidesPerView: 2.5,
+        slidesPerView: author === 'true' ? 1.2 : 2.5,
         spaceBetween: 20,
       },
     },
@@ -62,6 +67,14 @@ const TileSlider: FunctionComponent<TileSliderInterface> = ({
             <h3 className={classes.sliderItemCaption}>
               <span>{slide.name}</span>
             </h3>
+            {slide._rawBio && (
+              <p>
+                <BlockContent
+                  blocks={slide._rawBio}
+                  serializers={blockTypeDefaultSerializers}
+                />
+              </p>
+            )}
           </Link>
         </div>
       </div>
@@ -94,6 +107,7 @@ const TileSlider: FunctionComponent<TileSliderInterface> = ({
         <Typography variant="h2" className={classes.sliderTitle}>
           {headline}
         </Typography>
+
         {searchCtaLabel && (
           <Link
             className={classes.sectionLink}
@@ -103,6 +117,11 @@ const TileSlider: FunctionComponent<TileSliderInterface> = ({
           </Link>
         )}
       </div>
+      {description && (
+        <Typography variant="h5" className={classes.sliderDescription}>
+          {description}
+        </Typography>
+      )}
       <button
         className={classNames(classes.navigationButton, classes.nextButton)}
         type="button"

@@ -34,6 +34,7 @@ import newsletterBlock from './documents/newsletterBlock'
 import newsletterBlockType from './documents/newsletterBlockType'
 import sliderType from './documents/sliderType'
 import articleSlider from './documents/articleSlider'
+import authorSlider from './documents/authorSlider'
 import productSlider from './documents/productSlider'
 import accordionBlock from './documents/accordionBlock'
 import navBar from './documents/navBar'
@@ -74,6 +75,7 @@ export default createSchema({
 
     // Documents
     articleSlider,
+    authorSlider,
     config,
     brand,
     brandInfo,

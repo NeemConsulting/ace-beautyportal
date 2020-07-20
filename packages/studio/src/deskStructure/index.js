@@ -107,6 +107,11 @@ export default () =>
                 .icon(FaSlidersH)
                 .schemaType('productSlider')
                 .child(S.documentTypeList('productSlider').title('Slider for products')),
+              S.listItem()
+                .title('Slider - Authors')
+                .icon(FaSlidersH)
+                .schemaType('authorSlider')
+                .child(S.documentTypeList('authorSlider').title('Slider for authors')),
               S.divider(),
               S.listItem()
                 .title('Text Block')
@@ -326,6 +331,7 @@ export default () =>
             'product',
             'sliderType',
             'articleSlider',
+            'authorSlider',
             'productSlider',
             'tool',
             'navigation',

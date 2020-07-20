@@ -7,6 +7,9 @@ const SanityArticleSlider = loadable(() => import('../SanityArticleSlider'), {
 const SanityProductSlider = loadable(() => import('../SanityProductSlider'), {
   fallback: <div style={{ height: 500 }}>loading...</div>,
 });
+const SanityAuthorSlider = loadable(() => import('../SanityAuthorSlider'), {
+  fallback: <div style={{ height: 500 }}>loading...</div>,
+});
 import SanityTextBlock from '../SanityTextBlock';
 import NewsletterBlock from '../NewsletterBlock';
 import SanityVideoBlock from '../SanityVideoBlock';
@@ -16,6 +19,7 @@ import AccordionBlock from '../SanityAccordionBlock';
 const componentsMap = {
   SanityArticleSlider: SanityArticleSlider,
   SanityProductSlider: SanityProductSlider,
+  SanityAuthorSlider: SanityAuthorSlider,
   SanityTextBlock: SanityTextBlock,
   SanityNewsletterBlock: NewsletterBlock,
   SanityVideoBlock: SanityVideoBlock,

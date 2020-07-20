@@ -36,6 +36,7 @@ export default {
           type: 'reference',
           to: [
             { type: 'articleSlider' },
+            { type: 'authorSlider' },
             { type: 'productSlider' },
             { type: 'accordionBlock' },
             { type: 'textBlock' },

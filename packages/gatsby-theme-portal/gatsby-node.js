@@ -9,6 +9,7 @@ const createHowtoPages = require('./scripts/build/createHowtoPages');
 const createProductPages = require('./scripts/build/createProductPages');
 const createFeaturePages = require('./scripts/build/createFeaturePages');
 const createGalleryPages = require('./scripts/build/createGalleryPages');
+const createAuthorPages = require('./scripts/build/createAuthorPages');
 const express = require(`express`);
 
 exports.onCreateDevServer = ({ app }) => {
@@ -66,6 +67,10 @@ exports.createPages = async ({ graphql, actions }) => {
       createPage,
     }),
     createGalleryPages({
+      graphql,
+      createPage,
+    }),
+    createAuthorPages({
       graphql,
       createPage,
     }),
