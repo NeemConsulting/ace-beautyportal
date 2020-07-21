@@ -16,7 +16,6 @@ const LandingPage = (props: LandingPageProps) => {
     data: { page },
   } = props;
   const classes = useStyles();
-
   page.seo = page.seo || {};
 
   const site = {};

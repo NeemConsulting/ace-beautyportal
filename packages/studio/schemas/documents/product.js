@@ -1,4 +1,4 @@
-import {GiSpray} from 'react-icons/gi'
+import { GiSpray } from 'react-icons/gi'
 
 export default {
   title: 'Product',
@@ -40,20 +40,20 @@ export default {
       name: 'marketingDescription',
       description: 'Marketing sales pitch like - Is it right for me?',
       type: 'array',
-      of: [{type: 'block'}]
+      of: [{ type: 'block' }]
     },
     {
       title: 'Usage Details',
       name: 'usageDetails',
       description: 'Brief description of Top Tips and How To Use',
       type: 'array',
-      of: [{type: 'block'}]
+      of: [{ type: 'block' }]
     },
     {
       title: 'Ingredients',
       name: 'ingredients',
       type: 'array',
-      of: [{type: 'block'}]
+      of: [{ type: 'block' }]
     },
     {
       name: 'tags',
@@ -62,7 +62,7 @@ export default {
       of: [
         {
           type: 'reference',
-          to: [{type: 'tag'}]
+          to: [{ type: 'tag' }]
         }
       ],
       description: 'Select tags to meet customer needs - Best For'
@@ -84,6 +84,15 @@ export default {
       name: 'learnMore',
       type: 'url',
       description: 'Direct product link to brand site'
+    },
+    {
+      name: 'parentPage',
+      title: 'Parent Page',
+      description: 'Product will be categorised under the parent landing page',
+      type: 'reference',
+      to: {
+        type: 'landingPage'
+      }
     },
     {
       title: 'Slug',
