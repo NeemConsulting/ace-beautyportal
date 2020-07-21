@@ -98,6 +98,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         textDecoration: 'none',
       },
       '& .swiper-container': {
+        overflow: 'visible',
         paddingBottom: spacing(2.5),
       },
       '& .swiper-button-prev, & .swiper-button-next': {
@@ -162,6 +163,89 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
           opacity: 1,
         },
         '& + div + div + div': {
+          opacity: 1,
+        },
+      },
+    },
+    authorSlider: {
+      paddingTop: spacing(2.5),
+      position: 'relative',
+      [breakpoints.up('md')]: {
+        paddingTop: 0,
+        paddingBottom: spacing(2.5),
+      },
+      '& .gatsby-image-wrapper': {
+        height: 180,
+        [breakpoints.up('md')]: {
+          height: 270,
+        },
+      },
+      '& a': {
+        textDecoration: 'none',
+      },
+      '& .swiper-container': {
+        overflow: 'visible',
+        paddingBottom: spacing(2.5),
+      },
+      '& .swiper-button-prev, & .swiper-button-next': {
+        transition: 'all .3s ease 0s',
+      },
+      '& .swiper-button-prev': {
+        display: 'none',
+        [breakpoints.up('md')]: {
+          display: 'block',
+          color: palette.common.black,
+          top: '35%',
+          height: 64,
+          '&:hover': {
+            color: palette.primary.main,
+            left: 4,
+          },
+          '&:after': {
+            height: 64,
+            fontSize: '4rem',
+          },
+        },
+      },
+      '& .swiper-button-next': {
+        display: 'none',
+        [breakpoints.up('md')]: {
+          display: 'block',
+          color: palette.common.black,
+          top: '35%',
+          height: 64,
+          '&:hover': {
+            color: palette.primary.main,
+            right: 4,
+          },
+          '&:after': {
+            height: 64,
+            fontSize: '4rem',
+          },
+        },
+      },
+      '& .swiper-scrollbar': {
+        backgroundColor: 'transparent',
+      },
+      '& .swiper-scrollbar-drag': {
+        backgroundColor: 'rgba(0,0,0,.2)',
+      },
+      '& .swiper-container-horizontal > .swiper-scrollbar': {
+        width: '100%',
+        height: 5,
+        [breakpoints.up('md')]: {
+          height: 10,
+        },
+      },
+      '& .swiper-slide': {
+        opacity: 0.2,
+      },
+      '& .swiper-slide.swiper-slide-active': {
+        opacity: 1,
+        '& + div': {
+          opacity: 1,
+        },
+        '& + div + div': {
           opacity: 1,
         },
       },

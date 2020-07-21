@@ -6,7 +6,9 @@ import {
   Index,
   ClearRefinements,
   Highlight,
+  SortBy,
   HitsPerPage,
+  Hits,
   Panel,
   Configure,
   Snippet,
@@ -249,6 +251,21 @@ const Search = props => {
         )}
         <section className="container-results">
           <header className="container-header container-options">
+            <SortBy
+              className="container-option"
+              defaultRefinement="howtoArticle"
+              items={[
+                { label: 'Featured', value: 'howtoArticle' },
+                {
+                  label: 'PublishedAt Asc',
+                  value: 'howtoArtcile_publishedAt_asc',
+                },
+                {
+                  label: 'PublishedAt Desc',
+                  value: 'howtoArtcile_publishedAt_desc',
+                },
+              ]}
+            />
             <HitsPerPage
               className="container-option"
               items={[
@@ -269,11 +286,13 @@ const Search = props => {
             />
           </header>
 
-          {props.indices.map(({ name }) => (
+          {/* {props.indices.map(({ name }) => (
             <Index key={name} indexName={name}>
               <InfiniteHits showPrevious={false} hitComponent={Hit} />
             </Index>
-          ))}
+          ))} */}
+
+          <InfiniteHits showPrevious={false} hitComponent={Hit} />
 
           <NoResults />
         </section>

@@ -101,7 +101,7 @@ const TileSlider: FunctionComponent<TileSliderInterface> = ({
   };
 
   return (
-    <div className={classes.slider}>
+    <div className={author === 'true' ? classes.authorSlider : classes.slider}>
       <div className={classes.sectionTitle}>
         <Typography variant="h2" className={classes.sliderTitle}>
           {headline}
