@@ -55,8 +55,12 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
       backgroundRepeat: 'no-repeat',
       backgroundSize: '100% .1875rem',
       backgroundPosition: '0 100%',
+      transition: 'background-size 0.2s ease',
       [breakpoints.up('md')]: {
         fontSize: '1.125rem',
+      },
+      '&:hover': {
+        backgroundSize: '100% 1.3rem',
       },
     },
   })
