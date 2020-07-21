@@ -301,6 +301,16 @@ export const query = graphql`
         name
         _rawTextBlockBody
       }
+      ... on SanityTaxonomyBlock {
+        id
+        title: name
+        tags: taxonomyTags {
+          ... on SanityTag {
+            id
+            name
+          }
+        }
+      }
     }
   }
 `;

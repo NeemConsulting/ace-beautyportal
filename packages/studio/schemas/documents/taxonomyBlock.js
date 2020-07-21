@@ -1,4 +1,4 @@
-import {MdTextFields} from 'react-icons/md'
+import { MdTextFields } from 'react-icons/md'
 
 export default {
   name: 'taxonomyBlock',
@@ -30,7 +30,7 @@ export default {
       of: [
         {
           type: 'reference',
-          to: [{type: 'tag'}, {type: 'tagCategory'}]
+          to: [{ type: 'tag' }]
         }
       ]
     }
@@ -38,7 +38,7 @@ export default {
   preview: {
     select: {
       title: 'name',
-      subtitle: 'taxonomyTags',
+      subtitle: 'taxonomyBlockType',
       media: 'MdTextFields'
     }
   }

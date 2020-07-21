@@ -42,7 +42,8 @@ export default {
             { type: 'textBlock' },
             { type: 'imageBlock' },
             { type: 'videoBlock' },
-            { type: 'newsletterBlock' }
+            { type: 'newsletterBlock' },
+            { type: 'taxonomyBlock' }
           ]
         }
       ]
