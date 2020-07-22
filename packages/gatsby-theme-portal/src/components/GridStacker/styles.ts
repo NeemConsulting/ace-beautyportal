@@ -24,9 +24,6 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         alignItems: 'center',
       },
     },
-    tile: {
-      position: 'relative',
-    },
     wrapper: {
       display: 'flex',
       justifyContent: 'center',
