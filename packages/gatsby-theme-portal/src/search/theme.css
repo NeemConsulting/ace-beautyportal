@@ -135,11 +135,25 @@ a[class^='ais-'] {
 
 .ais-InfiniteHits-list {
   display: grid;
-  grid-gap: 40px;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
 }
 
-@media (min-width: 680px) {
+/* .ais-InfiniteHits-list .hit {
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+} */
+
+.ais-InfiniteHits-list .hit-image-container {
+  max-width: 100%;
+}
+
+.ais-InfiniteHits-list .hit-info-container {
+  padding: 10px 50px;
+}
+
+/* @media (min-width: 680px) {
   .ais-InfiniteHits-list {
     grid-template-columns: 1fr 1fr;
   }
@@ -155,6 +169,12 @@ a[class^='ais-'] {
   .ais-InfiniteHits-list {
     grid-template-columns: 1fr 1fr 1fr;
   }
+} */
+
+.author-InfiniteHits-list {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 1fr;
 }
 
 /* Menus */

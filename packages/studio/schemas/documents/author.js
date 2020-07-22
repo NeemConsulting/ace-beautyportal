@@ -24,7 +24,7 @@ export default {
     {
       name: 'parentPage',
       title: 'Parent Page',
-      description: 'Article will be categorised under the parent landing page',
+      description: 'Author will be categorised under the parent authors page',
       type: 'reference',
       to: {
         type: 'landingPage'

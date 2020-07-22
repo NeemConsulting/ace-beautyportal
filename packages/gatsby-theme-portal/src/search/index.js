@@ -3,12 +3,10 @@ import { Link } from 'gatsby';
 import {
   InstantSearch,
   RefinementList,
-  Index,
   ClearRefinements,
   Highlight,
   SortBy,
   HitsPerPage,
-  Hits,
   Panel,
   Configure,
   Snippet,
@@ -34,44 +32,95 @@ const searchClient = algoliasearch(
 );
 
 const Hit = ({ hit }) => {
-  const { path, title, image } = hit;
+  console.log('Hit', hit);
+  const { path, title, pageType, image } = hit;
 
   return (
-    <Link
-      className={'ais-InfiniteHits-item__link'}
-      to={`/${path}/`}
-      aria-label={title}
-    >
-      <article className="hit">
-        <header className="hit-image-container">
-          <picture>
-            <source
-              media="(max-width: 799px)"
-              srcset={image.mobileImage.fixed.srcWebp}
-            />
-            <source
-              media="(min-width: 800px)"
-              srcset={image.desktopImage.fixed.srcWebp}
-            />
-            <img src={image.desktopImage.fixed.src} alt={image.alt} />
-          </picture>
-        </header>
+    <>
+      <Link
+        className={'ais-InfiniteHits-item__link'}
+        to={`/${path}/`}
+        aria-label={title}
+      >
+        <article className="hit">
+          <header className="hit-image-container">
+            <picture>
+              <source
+                media="(max-width: 799px)"
+                srcset={image.mobileImage.fixed.srcWebp}
+              />
+              <source
+                media="(min-width: 800px)"
+                srcset={image.desktopImage.fixed.srcWebp}
+              />
+              <img src={image.desktopImage.fixed.src} alt={image.alt} />
+            </picture>
+          </header>
 
-        <div className="hit-info-container">
-          <p className="hit-category"></p>
-          <h1>
-            <Highlight attribute="title" tagName="mark" hit={hit} />
-          </h1>
-          <p className="hit-description">
-            <Snippet attribute="ingredientBody" hit={hit} tagName="mark" />
-            <Snippet attribute="usageBody" hit={hit} tagName="mark" />
-            <Snippet attribute="galleryBody" hit={hit} tagName="mark" />
-            <Snippet attribute="howTobody" hit={hit} tagName="mark" />
-            <Snippet attribute="featureBody" hit={hit} tagName="mark" />
-          </p>
-        </div>
-      </article>
-    </Link>
+          <div className="hit-info-container">
+            <p className="hit-category"></p>
+            <h1>
+              <Highlight attribute="title" tagName="mark" hit={hit} />
+            </h1>
+            <p className="hit-description">
+              <Snippet attribute="ingredientBody" hit={hit} tagName="mark" />
+              <Snippet attribute="usageBody" hit={hit} tagName="mark" />
+              <Snippet attribute="galleryBody" hit={hit} tagName="mark" />
+              <Snippet attribute="howTobody" hit={hit} tagName="mark" />
+              <Snippet attribute="featureBody" hit={hit} tagName="mark" />
+            </p>
+          </div>
+        </article>
+      </Link>
+    </>
+  );
+};
+
+const AuthorHit = ({ hit }) => {
+  console.log('Hit', hit);
+  const { path, title, pageType, image } = hit;
+
+  return (
+    <>
+      <Link
+        className={'ais-InfiniteHits-item__link'}
+        to={`/${path}/`}
+        aria-label={title}
+      >
+        <article className="hit">
+          {pageType !== 'product' && (
+            <span class="hit-article-type">{pageType}</span>
+          )}
+          <header className="hit-image-container">
+            <picture>
+              <source
+                media="(max-width: 799px)"
+                srcset={image.mobileImage.fixed.srcWebp}
+              />
+              <source
+                media="(min-width: 800px)"
+                srcset={image.desktopImage.fixed.srcWebp}
+              />
+              <img src={image.desktopImage.fixed.src} alt={image.alt} />
+            </picture>
+          </header>
+
+          <div className="hit-info-container">
+            <p className="hit-category"></p>
+            <h1>
+              <Highlight attribute="title" tagName="mark" hit={hit} />
+            </h1>
+            <p className="hit-description">
+              <Snippet attribute="ingredientBody" hit={hit} tagName="mark" />
+              <Snippet attribute="usageBody" hit={hit} tagName="mark" />
+              <Snippet attribute="galleryBody" hit={hit} tagName="mark" />
+              <Snippet attribute="howTobody" hit={hit} tagName="mark" />
+              <Snippet attribute="featureBody" hit={hit} tagName="mark" />
+            </p>
+          </div>
+        </article>
+      </Link>
+    </>
   );
 };
 
@@ -152,13 +201,21 @@ const Search = props => {
         />
       )}
 
-      <div className="show-results">
-        <ResultsNumberMobile />
-      </div>
+      {props.authors !== 'true' && (
+        <div className="show-results">
+          <ResultsNumberMobile />
+        </div>
+      )}
 
       <main className="search-container" ref={containerRef}>
         {props.authors === 'true' ? (
-          <></>
+          <div className="container-wrapper">
+            <section className="container-filters">
+              <div className="container-header">
+                {/* <ResultsNumberMobile /> */}
+              </div>
+            </section>
+          </div>
         ) : (
           <div className="container-wrapper">
             <section className="container-filters" onKeyUp={onKeyUp}>
@@ -251,21 +308,27 @@ const Search = props => {
         )}
         <section className="container-results">
           <header className="container-header container-options">
-            <SortBy
-              className="container-option"
-              defaultRefinement="howtoArticle"
-              items={[
-                { label: 'Featured', value: 'howtoArticle' },
-                {
-                  label: 'PublishedAt Asc',
-                  value: 'howtoArtcile_publishedAt_asc',
-                },
-                {
-                  label: 'PublishedAt Desc',
-                  value: 'howtoArtcile_publishedAt_desc',
-                },
-              ]}
-            />
+            {props.authors === 'true' && (
+              <ResultsNumberMobile authorName={props.authorName} />
+            )}
+            {props.filterProducts !== 'true' && (
+              <SortBy
+                className="container-option"
+                defaultRefinement={props.indices[0].name}
+                items={[
+                  { label: 'Sort by Date', value: 'howtoArticle' },
+                  ,
+                  {
+                    label: 'Latest',
+                    value: 'howtoArtcile_publishedAt_desc',
+                  },
+                  {
+                    label: 'Oldest',
+                    value: 'howtoArtcile_publishedAt_asc',
+                  },
+                ]}
+              />
+            )}
             <HitsPerPage
               className="container-option"
               items={[
@@ -286,13 +349,11 @@ const Search = props => {
             />
           </header>
 
-          {/* {props.indices.map(({ name }) => (
-            <Index key={name} indexName={name}>
-              <InfiniteHits showPrevious={false} hitComponent={Hit} />
-            </Index>
-          ))} */}
-
-          <InfiniteHits showPrevious={false} hitComponent={Hit} />
+          {props.authors === 'true' ? (
+            <InfiniteHits showPrevious={false} hitComponent={AuthorHit} />
+          ) : (
+            <InfiniteHits showPrevious={false} hitComponent={Hit} />
+          )}
 
           <NoResults />
         </section>

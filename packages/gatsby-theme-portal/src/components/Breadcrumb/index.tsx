@@ -9,6 +9,7 @@ const Breadcrumb: FunctionComponent<BreadcrumbInterface> = ({
   tag,
   pageTitle,
   searchResultPath,
+  authors,
 }) => {
   const classes = useStyles();
 
@@ -22,6 +23,13 @@ const Breadcrumb: FunctionComponent<BreadcrumbInterface> = ({
                 Home
               </Link>
             </li>
+            {authors === 'true' && (
+              <li className={classes.item}>
+                <Link to={'/authors'} className={classes.link}>
+                  Authors
+                </Link>
+              </li>
+            )}
             {tag && (
               <>
                 <li className={classes.item}>
@@ -60,6 +68,7 @@ interface BreadcrumbInterface {
   tag?: any;
   pageTitle: string;
   searchResultPath?: string;
+  authors: any;
 }
 
 export default Breadcrumb;

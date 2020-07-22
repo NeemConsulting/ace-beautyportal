@@ -43,6 +43,7 @@ exports.createResolvers = ({ createResolvers }) => {
     SanityFeatureArticle: pathResolver,
     SanityLandingPage: pathResolver,
     SanityProduct: pathResolver,
+    SanityAuthor: pathResolver,
   });
 };
 

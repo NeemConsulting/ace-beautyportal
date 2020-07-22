@@ -132,6 +132,47 @@ mark {
   text-align: center;
 }
 
+.hit-article-type {
+  top: 15px;
+  left: 7%;
+  padding: 6px;
+  font-size: 0.75rem;
+  color: #2c5270;
+  z-index: 1;
+  position: relative;
+  font-size: 0.625rem;
+  font-weight: 600;
+  line-height: 1.1;
+  padding-top: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  letter-spacing: 1px;
+  padding-bottom: 3px;
+  text-transform: uppercase;
+  background-color: #fff;
+}
+
+@media (min-width: 680px) {
+  .hit-article-type {
+    left: 10%;
+    top: 15px;
+  }
+}
+
+@media (min-width: 900px) {
+  .hit-article-type {
+    left: 15%;
+    top: 15px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hit-article-type {
+    left: 15%;
+    top: 15px;
+  }
+}
+
 .hit-category {
   color: #21243d;
   font-size: 12px;
