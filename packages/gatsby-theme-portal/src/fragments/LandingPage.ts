@@ -211,6 +211,9 @@ export const query = graphql`
         name
         headline
         description
+        slideType {
+          name
+        }
         slides {
           _type
           name

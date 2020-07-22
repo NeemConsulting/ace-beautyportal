@@ -5,5 +5,6 @@ export interface SanityAuthorSliderInterface {
   searchCtaLabel: string | null;
   searchTags: string | null;
   description: string;
+  slideType: any;
   author: any;
 }
