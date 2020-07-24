@@ -7,6 +7,9 @@ export default makeStyles(({ palette }: Theme) =>
       '&.stacker': {
         backgroundColor: palette.quaternary.main,
       },
+      '&.editor': {
+        backgroundColor: palette.common.white,
+      },
     },
   })
 );

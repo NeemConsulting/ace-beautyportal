@@ -495,9 +495,31 @@ a[class^='ais-'] {
   -moz-appearance: none;
   appearance: none;
   background: none;
-  border: none;
+  border: 1px solid #ebecf3;
+  border-radius: 5px;
   color: #21243d;
   font-family: inherit;
+  font-size: 1rem;
+  padding: 5px;
+}
+
+.ais-SortBy-option,
+.ais-HitsPerPage-option {
+  font-size: 1rem;
+}
+
+.ais-SortBy::after,
+.ais-HitsPerPage::after {
+  content: '\25BC';
+  position: absolute;
+  top: 5px;
+  right: 0;
+  padding: 0 1em;
+  cursor: pointer;
+  pointer-events: none;
+  -webkit-transition: 0.25s all ease;
+  -o-transition: 0.25s all ease;
+  transition: 0.25s all ease;
 }
 
 /* Sliders */

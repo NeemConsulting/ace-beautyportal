@@ -5,7 +5,7 @@ import { formatNumber } from '../utils';
 const ResultsNumberMobile = ({ nbHits, authorName }) => (
   <>
     {authorName ? (
-      <div style={{ marginRight: '40%' }}>
+      <span>
         <strong style={{ fontSize: '2.5rem' }}>
           {authorName}
           {"'s edit"}
@@ -13,7 +13,7 @@ const ResultsNumberMobile = ({ nbHits, authorName }) => (
         <span style={{ fontSize: '1.125rem', marginLeft: '20px' }}>
           {formatNumber(nbHits)} results
         </span>
-      </div>
+      </span>
     ) : (
       <div>
         <strong>{formatNumber(nbHits)}</strong> results found
