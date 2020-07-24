@@ -11,6 +11,7 @@ import useStyles from './styles';
 
 const componentMap = {
   tile: ArticleTileSlider,
+  editor: ArticleTileSlider,
   hero: HeroSlider,
   stacker: TileStacker,
   default: TileStacker,
@@ -32,6 +33,7 @@ const SanityArticleSlider: FunctionComponent<SanityArticleSliderInterface> = ({
     if (sliderType.indexOf('hero') >= 0) return 'hero';
     if (sliderType.indexOf('stacker') >= 0) return 'stacker';
     if (sliderType.indexOf('tile') >= 0) return 'tile';
+    if (sliderType.indexOf('editor') >= 0) return 'editor';
 
     return 'default';
   };

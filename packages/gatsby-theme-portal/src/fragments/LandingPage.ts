@@ -232,6 +232,7 @@ export const query = graphql`
             }
             alt
           }
+          path
           slug {
             current
           }

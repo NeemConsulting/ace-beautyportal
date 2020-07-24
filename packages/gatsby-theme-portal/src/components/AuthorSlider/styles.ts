@@ -8,12 +8,12 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
       marginBottom: spacing(1.875),
       [breakpoints.up('md')]: {
         marginBottom: spacing(3),
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center',
       },
     },
     sectionLink: {
-      color: palette.common.black,
+      color: palette.common.white,
       textDecoration: 'none',
       fontSize: '.875rem',
       fontWeight: 700,
@@ -29,7 +29,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         alignSelf: 'center',
       },
       '&:hover, &:focus': {
-        backgroundImage: `linear-gradient(120deg,${palette.common.black} 0%,${palette.common.black} 100%)`,
+        backgroundImage: `linear-gradient(120deg,${palette.common.white} 0%,${palette.common.white} 100%)`,
       },
     },
     heroImage: {
@@ -58,7 +58,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         left: 0,
         right: 0,
         bottom: 0,
-        background: palette.common.black,
+        background: palette.common.white,
         transform: 'scaleX(0)',
         transformOrigin: '0 50%',
         transitionProperty: 'transform',
@@ -108,7 +108,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         display: 'none',
         [breakpoints.up('md')]: {
           display: 'block',
-          color: palette.common.black,
+          color: palette.common.white,
           top: '35%',
           height: 64,
           '&:hover': {
@@ -125,7 +125,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         display: 'none',
         [breakpoints.up('md')]: {
           display: 'block',
-          color: palette.common.black,
+          color: palette.common.white,
           top: '35%',
           height: 64,
           '&:hover': {
@@ -142,7 +142,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         backgroundColor: 'transparent',
       },
       '& .swiper-scrollbar-drag': {
-        backgroundColor: 'rgba(0,0,0,.2)',
+        backgroundColor: 'rgba(255,255,255,.2)',
       },
       '& .swiper-container-horizontal > .swiper-scrollbar': {
         width: '100%',
@@ -194,7 +194,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         display: 'none',
         [breakpoints.up('md')]: {
           display: 'block',
-          color: palette.common.black,
+          color: palette.common.white,
           top: '35%',
           height: 64,
           '&:hover': {
@@ -211,7 +211,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         display: 'none',
         [breakpoints.up('md')]: {
           display: 'block',
-          color: palette.common.black,
+          color: palette.common.white,
           top: '35%',
           height: 64,
           '&:hover': {
@@ -228,7 +228,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         backgroundColor: 'transparent',
       },
       '& .swiper-scrollbar-drag': {
-        backgroundColor: 'rgba(0,0,0,.2)',
+        backgroundColor: 'rgba(255,255,255,.2)',
       },
       '& .swiper-container-horizontal > .swiper-scrollbar': {
         width: '100%',
@@ -261,15 +261,24 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         },
       },
     },
-    sliderTitle: {},
+    sliderTitle: {
+      color: palette.common.white,
+      textAlign: 'center',
+    },
     sliderDescription: {
+      color: palette.common.white,
+      textAlign: 'center',
       marginBottom: '3%',
       fontSize: '1.3rem',
+    },
+    sliderItemDesc: {
+      color: palette.common.white,
+      textAlign: 'center',
     },
     sliderItemCaption: {
       fontSize: '.875rem',
       fontWeight: 600,
-      color: palette.common.black,
+      color: palette.common.white,
       marginTop: spacing(1.875),
       marginBottom: spacing(0.625),
       textAlign: 'center',

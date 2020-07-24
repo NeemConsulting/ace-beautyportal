@@ -6,14 +6,14 @@ import classNames from 'classnames';
 import { Typography } from '@material-ui/core';
 import Swiper from 'react-id-swiper';
 import 'swiper/css/swiper.min.css';
-import { TileSliderInterface } from './models';
-import { ReactComponent as Next } from '../../images/icons/next.svg';
+import { AuthorSliderInterface } from './models';
+import { ReactComponent as Next } from '../../images/icons/next-white.svg';
 import { getSearchUrlWithTagsAndCategory } from '../../helpers/searchUrl';
 import BlockContent from '@sanity/block-content-to-react';
 import { blockTypeDefaultSerializers } from '../../helpers/sanity';
 import useStyles from './styles';
 
-const TileSlider: FunctionComponent<TileSliderInterface> = ({
+const AuthorSlider: FunctionComponent<AuthorSliderInterface> = ({
   slides,
   headline,
   searchCtaLabel,
@@ -67,7 +67,7 @@ const TileSlider: FunctionComponent<TileSliderInterface> = ({
               <span>{slide.name}</span>
             </h3>
             {slide._rawBio && (
-              <p>
+              <p className={classes.sliderItemDesc}>
                 <BlockContent
                   blocks={slide._rawBio}
                   serializers={blockTypeDefaultSerializers}
@@ -146,4 +146,4 @@ const TileSlider: FunctionComponent<TileSliderInterface> = ({
   );
 };
 
-export default TileSlider;
+export default AuthorSlider;

@@ -17,6 +17,9 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
       '&.grid': {
         backgroundColor: palette.quinary.main,
       },
+      '&.author': {
+        backgroundColor: palette.quinary.main,
+      },
     },
   })
 );

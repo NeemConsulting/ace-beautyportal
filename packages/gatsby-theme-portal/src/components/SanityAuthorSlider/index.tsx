@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import Container from '@material-ui/core/Container';
 import TileSlider from '../TileSlider';
+import AuthorSlider from '../AuthorSlider';
 import GridStacker from '../GridStacker';
 
 import useStyles from './styles';
@@ -11,10 +12,11 @@ import useStyles from './styles';
 const componentMap = {
   tile: TileSlider,
   grid: GridStacker,
+  author: AuthorSlider,
   default: TileSlider,
 };
 
-const SanityProductSlider: FunctionComponent<SanityAuthorSliderInterface> = ({
+const SanityAuthorSlider: FunctionComponent<SanityAuthorSliderInterface> = ({
   name,
   slides,
   headline,
@@ -28,6 +30,7 @@ const SanityProductSlider: FunctionComponent<SanityAuthorSliderInterface> = ({
   const getComponentName = (sliderType: any) => {
     sliderType = slideType.name.toLowerCase();
     if (sliderType.indexOf('grid') >= 0) return 'grid';
+    if (sliderType.indexOf('author') >= 0) return 'author';
     if (sliderType.indexOf('tile') >= 0) return 'tile';
 
     return 'default';
@@ -55,4 +58,4 @@ const SanityProductSlider: FunctionComponent<SanityAuthorSliderInterface> = ({
   );
 };
 
-export default SanityProductSlider;
+export default SanityAuthorSlider;

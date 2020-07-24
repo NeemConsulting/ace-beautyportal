@@ -20,6 +20,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         textDecoration: 'none',
       },
       '& .swiper-container': {
+        overflow: 'visible',
         paddingBottom: spacing(2.5),
       },
       '& .swiper-button-prev': {
