@@ -16,13 +16,14 @@ const searchIndices = [
 
 const AuthorPage = (props: AuthorPageProps) => {
   const { data } = props;
+  console.log('data', data);
   const { name, slug, _rawBio, image } = data.page.nodes[0];
 
   return (
     <Layout>
       <SEO lang={'tl-ph'} title={name} description={name} keywords={[' ']} />
       <OGTags type={'page'} slug={slug} data={data.page} />
-      {slug !== '/' && <Breadcrumb pageTitle={name} />}
+      {slug !== '/' && <Breadcrumb authors="true" pageTitle={name} />}
       <Grid container>
         <Grid item xs={12}>
           <Container>
@@ -58,6 +59,7 @@ const AuthorPage = (props: AuthorPageProps) => {
               authors="true"
               indices={searchIndices}
               slug={slug.current}
+              authorName={name}
             />
           </Container>
         </Grid>

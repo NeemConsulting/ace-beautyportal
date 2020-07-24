@@ -14,6 +14,12 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
       '& .gatsby-image-wrapper': {
         height: 'auto',
       },
+      '&.grid': {
+        backgroundColor: palette.quinary.main,
+      },
+      '&.author': {
+        backgroundColor: palette.quinary.main,
+      },
     },
   })
 );

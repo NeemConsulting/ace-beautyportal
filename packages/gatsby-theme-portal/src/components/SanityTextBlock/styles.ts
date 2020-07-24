@@ -16,6 +16,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         lineHeight: 1.1,
         marginTop: 0,
         marginBottom: 10,
+        textAlign: 'center',
         [breakpoints.up('md')]: {
           fontSize: '2.875rem',
         },
@@ -25,6 +26,47 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         '& p': {
           width: '80%',
           margin: 'auto',
+        },
+      },
+      '&.textblocktypeb': {
+        backgroundColor: palette.quaternary.main,
+        '& svg': {
+          fill: palette.common.black,
+        },
+        '& p': {
+          textAlign: 'left',
+        },
+        '& .aboutContainer': {
+          [breakpoints.up('md')]: {
+            display: 'flex',
+            flexWrap: 'nowrap',
+          },
+          '& h1': {
+            textAlign: 'center',
+          },
+          display: 'flex',
+          flexWrap: 'wrap',
+
+          '& div': {
+            width: '100%',
+            [breakpoints.up('md')]: {
+              margin: '10px',
+              padding: '10px',
+            },
+          },
+          '& .sectionFollow': {
+            '& .sectionFollowBlock': {
+              background: palette.common.white,
+              padding: '1rem 2rem',
+            },
+            '& h3': {
+              fontSize: '1.875rem',
+              [breakpoints.up('md')]: {
+                marginBottom: '1rem !important',
+                marginLeft: '1rem !important',
+              },
+            },
+          },
         },
       },
     },

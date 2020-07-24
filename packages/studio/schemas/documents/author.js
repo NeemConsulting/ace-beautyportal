@@ -1,4 +1,4 @@
-import {MdPerson} from 'react-icons/md'
+import { MdPerson } from 'react-icons/md'
 
 export default {
   name: 'author',
@@ -20,6 +20,15 @@ export default {
       name: 'bio',
       type: 'authorBioPortableText',
       title: 'Biography'
+    },
+    {
+      name: 'parentPage',
+      title: 'Parent Page',
+      description: 'Author will be categorised under the parent authors page',
+      type: 'reference',
+      to: {
+        type: 'landingPage'
+      }
     },
     {
       name: 'slug',

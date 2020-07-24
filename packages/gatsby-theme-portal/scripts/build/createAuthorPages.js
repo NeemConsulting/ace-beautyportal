@@ -12,6 +12,11 @@ module.exports = async ({ graphql, createPage }) => {
         nodes {
           id
           name
+          parentPage {
+            slug {
+              current
+            }
+          }
           slug {
             current
           }

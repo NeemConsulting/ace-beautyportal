@@ -3,13 +3,12 @@ import { Link } from 'gatsby';
 import {
   InstantSearch,
   RefinementList,
-  Index,
   ClearRefinements,
   Highlight,
+  SortBy,
   HitsPerPage,
   Panel,
   Configure,
-  Snippet,
   InfiniteHits,
 } from 'react-instantsearch-dom';
 import algoliasearch from 'algoliasearch/lite';
@@ -32,44 +31,50 @@ const searchClient = algoliasearch(
 );
 
 const Hit = ({ hit }) => {
+  console.log('Hit', hit);
   const { path, title, image } = hit;
 
   return (
-    <Link
-      className={'ais-InfiniteHits-item__link'}
-      to={`/${path}/`}
-      aria-label={title}
-    >
-      <article className="hit">
-        <header className="hit-image-container">
-          <picture>
-            <source
-              media="(max-width: 799px)"
-              srcset={image.mobileImage.fixed.srcWebp}
-            />
-            <source
-              media="(min-width: 800px)"
-              srcset={image.desktopImage.fixed.srcWebp}
-            />
-            <img src={image.desktopImage.fixed.src} alt={image.alt} />
-          </picture>
-        </header>
+    <>
+      <Link
+        className={'ais-InfiniteHits-item__link'}
+        to={`/${path}/`}
+        aria-label={title}
+      >
+        <article className="hit">
+          {/* {pageType !== 'product' && (
+            <span class="hit-article-type">{pageType}</span>
+          )} */}
+          <header className="hit-image-container">
+            <picture>
+              <source
+                media="(max-width: 799px)"
+                srcset={image.mobileImage.fixed.srcWebp}
+              />
+              <source
+                media="(min-width: 800px)"
+                srcset={image.desktopImage.fixed.srcWebp}
+              />
+              <img src={image.desktopImage.fixed.src} alt={image.alt} />
+            </picture>
+          </header>
 
-        <div className="hit-info-container">
-          <p className="hit-category"></p>
-          <h1>
-            <Highlight attribute="title" tagName="mark" hit={hit} />
-          </h1>
-          <p className="hit-description">
-            <Snippet attribute="ingredientBody" hit={hit} tagName="mark" />
-            <Snippet attribute="usageBody" hit={hit} tagName="mark" />
-            <Snippet attribute="galleryBody" hit={hit} tagName="mark" />
-            <Snippet attribute="howTobody" hit={hit} tagName="mark" />
-            <Snippet attribute="featureBody" hit={hit} tagName="mark" />
-          </p>
-        </div>
-      </article>
-    </Link>
+          <div className="hit-info-container">
+            <p className="hit-category"></p>
+            <h1>
+              <Highlight attribute="title" tagName="mark" hit={hit} />
+            </h1>
+            {/* <p className="hit-description">
+              <Snippet attribute="ingredientBody" hit={hit} tagName="mark" />
+              <Snippet attribute="usageBody" hit={hit} tagName="mark" />
+              <Snippet attribute="galleryBody" hit={hit} tagName="mark" />
+              <Snippet attribute="howTobody" hit={hit} tagName="mark" />
+              <Snippet attribute="featureBody" hit={hit} tagName="mark" />
+            </p> */}
+          </div>
+        </article>
+      </Link>
+    </>
   );
 };
 
@@ -149,106 +154,122 @@ const Search = props => {
           removeWordsIfNoResults="allOptional"
         />
       )}
-
-      <div className="show-results">
-        <ResultsNumberMobile />
+      <div
+        className={
+          props.authors !== 'true' ? 'show-results' : 'show-author-results'
+        }
+      >
+        {props.authors !== 'true' ? (
+          <ResultsNumberMobile />
+        ) : (
+          <ResultsNumberMobile authorName={props.authorName} />
+        )}
       </div>
 
       <main className="search-container" ref={containerRef}>
-        {props.authors === 'true' ? (
-          <></>
-        ) : (
-          <div className="container-wrapper">
-            <section className="container-filters" onKeyUp={onKeyUp}>
-              <div className="container-header">
-                <h2>Filters</h2>
+        <div className="container-wrapper">
+          <section className="container-filters" onKeyUp={onKeyUp}>
+            <div className="container-header">
+              {/* {props.authors === 'true' && (
+              <ResultsNumberMobile authorName={props.authorName} />
+            )} */}
+              <h2>Filters</h2>
 
-                <div className="clear-filters" data-layout="desktop">
-                  <ClearRefinements
-                    translations={{
-                      reset: (
-                        <>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="11"
-                            height="11"
-                            viewBox="0 0 11 11"
-                          >
-                            <g fill="none" fillRule="evenodd" opacity=".4">
-                              <path d="M0 0h11v11H0z" />
-                              <path
-                                fill="#000"
-                                fillRule="nonzero"
-                                d="M8.26 2.75a3.896 3.896 0 1 0 1.102 3.262l.007-.056a.49.49 0 0 1 .485-.456c.253 0 .451.206.437.457 0 0 .012-.109-.006.061a4.813 4.813 0 1 1-1.348-3.887v-.987a.458.458 0 1 1 .917.002v2.062a.459.459 0 0 1-.459.459H7.334a.458.458 0 1 1-.002-.917h.928z"
-                              />
-                            </g>
-                          </svg>
-                          Clear filters
-                        </>
-                      ),
-                    }}
-                  />
-                </div>
-
-                <div className="clear-filters" data-layout="mobile">
-                  <ResultsNumberMobile />
-                </div>
+              <div className="clear-filters" data-layout="desktop">
+                <ClearRefinements
+                  translations={{
+                    reset: (
+                      <>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="11"
+                          height="11"
+                          viewBox="0 0 11 11"
+                        >
+                          <g fill="none" fillRule="evenodd" opacity=".4">
+                            <path d="M0 0h11v11H0z" />
+                            <path
+                              fill="#000"
+                              fillRule="nonzero"
+                              d="M8.26 2.75a3.896 3.896 0 1 0 1.102 3.262l.007-.056a.49.49 0 0 1 .485-.456c.253 0 .451.206.437.457 0 0 .012-.109-.006.061a4.813 4.813 0 1 1-1.348-3.887v-.987a.458.458 0 1 1 .917.002v2.062a.459.459 0 0 1-.459.459H7.334a.458.458 0 1 1-.002-.917h.928z"
+                            />
+                          </g>
+                        </svg>
+                        Clear filters
+                      </>
+                    ),
+                  }}
+                />
               </div>
 
-              <div className="container-body">
-                {props.filterProducts === 'true' ? (
-                  <>
-                    <Panel header="Category">
-                      <RefinementList
-                        attribute="tag"
-                        limit={6}
-                        showMore={true}
-                      />
-                    </Panel>
-                    <Panel header="All brands">
-                      <RefinementList attribute="brand" />
-                    </Panel>
-                  </>
-                ) : (
-                  <>
-                    <Panel header="Tag">
-                      <RefinementList
-                        attribute="tag"
-                        limit={6}
-                        showMore={true}
-                      />
-                    </Panel>
-                    <Panel header="Category">
-                      <RefinementList
-                        attribute="category"
-                        limit={6}
-                        showMore={true}
-                      />
-                    </Panel>
-                    <Panel header="Tags">
-                      <RefinementList attribute="pageType" />
-                    </Panel>
-                    <Panel header="Duration">
-                      <RefinementList attribute="duration" />
-                    </Panel>
-                  </>
-                )}
+              <div className="clear-filters" data-layout="mobile">
+                <ResultsNumberMobile />
               </div>
-            </section>
+            </div>
 
-            <footer className="container-filters-footer" data-layout="mobile">
-              <div className="container-filters-footer-button-wrapper">
-                <ClearFiltersMobile containerRef={containerRef} />
-              </div>
+            <div className="container-body">
+              {props.filterProducts === 'true' ? (
+                <>
+                  <Panel header="Category">
+                    <RefinementList attribute="tag" limit={6} showMore={true} />
+                  </Panel>
+                  <Panel header="All brands">
+                    <RefinementList attribute="brand" />
+                  </Panel>
+                </>
+              ) : (
+                <>
+                  <Panel header="Tag">
+                    <RefinementList attribute="tag" limit={6} showMore={true} />
+                  </Panel>
+                  <Panel header="Category">
+                    <RefinementList
+                      attribute="category"
+                      limit={6}
+                      showMore={true}
+                    />
+                  </Panel>
+                  <Panel header="Page Type">
+                    <RefinementList attribute="pageType" />
+                  </Panel>
+                  <Panel header="Duration">
+                    <RefinementList attribute="duration" />
+                  </Panel>
+                </>
+              )}
+            </div>
+          </section>
 
-              <div className="container-filters-footer-button-wrapper">
-                <SaveFiltersMobile onClick={closeFilters} />
-              </div>
-            </footer>
-          </div>
-        )}
+          <footer className="container-filters-footer" data-layout="mobile">
+            <div className="container-filters-footer-button-wrapper">
+              <ClearFiltersMobile containerRef={containerRef} />
+            </div>
+
+            <div className="container-filters-footer-button-wrapper">
+              <SaveFiltersMobile onClick={closeFilters} />
+            </div>
+          </footer>
+        </div>
+
         <section className="container-results">
           <header className="container-header container-options">
+            {props.filterProducts !== 'true' && (
+              <SortBy
+                className="container-option"
+                defaultRefinement={props.indices[0].name}
+                items={[
+                  { label: 'Sort by Date', value: 'howtoArticle' },
+                  {
+                    label: 'Latest',
+                    value: 'howtoArtcile_publishedAt_desc',
+                  },
+                  {
+                    label: 'Oldest',
+                    value: 'howtoArtcile_publishedAt_asc',
+                  },
+                ]}
+              />
+            )}
             <HitsPerPage
               className="container-option"
               items={[
@@ -269,40 +290,32 @@ const Search = props => {
             />
           </header>
 
-          {props.indices.map(({ name }) => (
-            <Index key={name} indexName={name}>
-              <InfiniteHits showPrevious={false} hitComponent={Hit} />
-            </Index>
-          ))}
+          <InfiniteHits showPrevious={false} hitComponent={Hit} />
 
           <NoResults />
         </section>
       </main>
 
-      {props.authors === 'true' ? (
-        <></>
-      ) : (
-        <aside data-layout="mobile">
-          <button
-            className="filters-button"
-            data-action="open-overlay"
-            onClick={openFilters}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M15 1H1l5.6 6.3v4.37L9.4 13V7.3z"
-                stroke="#fff"
-                strokeWidth="1.29"
-                fill="none"
-                fillRule="evenodd"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            Filters
-          </button>
-        </aside>
-      )}
+      <aside data-layout="mobile">
+        <button
+          className="filters-button"
+          data-action="open-overlay"
+          onClick={openFilters}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M15 1H1l5.6 6.3v4.37L9.4 13V7.3z"
+              stroke="#fff"
+              strokeWidth="1.29"
+              fill="none"
+              fillRule="evenodd"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+          Filters
+        </button>
+      </aside>
     </InstantSearch>
   );
 };

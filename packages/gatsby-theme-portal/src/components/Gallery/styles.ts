@@ -16,11 +16,18 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
         maxWidth: 750,
         maxHeight: 500,
         margin: 'auto',
+        '& .slider-wrapper': {
+          overflow: 'visible',
+        },
         '&.carousel-slider': {
           overflow: 'visible',
         },
         '& .slide': {
           background: '#f4f4f4',
+          opacity: 0.2,
+        },
+        '& .selected': {
+          opacity: 1,
         },
         '& .thumbs-wrapper': {
           display: 'none',
