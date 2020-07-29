@@ -40,6 +40,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
       },
       '& .contentCollapse': {
         maxHeight: '0',
+        overflow: 'hidden',
         fontWeight: 'normal',
         transition: 'max-height .3s',
       },
