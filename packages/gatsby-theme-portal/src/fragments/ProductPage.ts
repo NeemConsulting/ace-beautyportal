@@ -70,6 +70,7 @@ export const query2 = graphql`
         }
       }
     }
+    path
     name
     slug {
       current

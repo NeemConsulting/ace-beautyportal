@@ -15,7 +15,8 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
     accordion: {
       width: '100%',
       cursor: 'pointer',
-      paddingTop: spacing(1.7),
+      paddingTop: spacing(0.75),
+      paddingBottom: spacing(0.75),
       paddingLeft: spacing(2),
       paddingRight: spacing(2),
       fontWeight: 'bold',
@@ -43,6 +44,7 @@ export default makeStyles(({ breakpoints, palette, spacing }: Theme) =>
       },
       '& .contentCollapse': {
         maxHeight: '0',
+        overflow: 'hidden',
         fontWeight: 'normal',
         transition: 'max-height .3s',
       },
